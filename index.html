@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dz-Orientation (DzTech Mind)</title>
+    <meta name="theme-color" content="#004d00" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="https://picsum.photos/seed/dztech/32/32" />
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker registered!'))
+            .catch(err => console.log('Service Worker registration failed: ', err));
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
