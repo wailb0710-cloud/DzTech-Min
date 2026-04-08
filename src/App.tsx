@@ -15,6 +15,7 @@ import {
   Building2,
   Star
 } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 import { Specialization } from './types';
 
 const INITIAL_DATA: Specialization[] = [
@@ -750,6 +751,7 @@ export default function App() {
           جميع الحقوق محفوظة © 2026 دليل التخصصات الجامعية
         </div>
       </footer>
+      <Analytics />
     </div>
   );
 }
