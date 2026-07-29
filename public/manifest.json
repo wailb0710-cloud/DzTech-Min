@@ -1,11 +1,11 @@
 {
-  "name": "Dz-Orientation (DzTech Mind)",
-  "short_name": "Dz-Orientation",
-  "description": "دليلك الذكي لاختيار التخصص الجامعي في الجزائر (توقعات 2026)",
+  "name": "DzTech Mind",
+  "short_name": "DzTech",
+  "description": "منصة التوجيه الجامعي في الجزائر",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#004d00",
-  "theme_color": "#004d00",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
   "icons": [
     {
       "src": "https://picsum.photos/seed/dztech/192/192",
