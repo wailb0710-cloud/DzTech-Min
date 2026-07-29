@@ -365,4 +365,4 @@ export default function App() {
       {showAIChatModal && <AIChatModal onClose={() => setShowAIChatModal(false)} />}
     </div>
   );
-}
+                               }
