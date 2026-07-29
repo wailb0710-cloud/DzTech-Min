@@ -504,4 +504,4 @@ export default function App() {
                   setTimeout(() => setIsDiscovering(false), 1000);
                 }}
                 className="w-full py-3 bg-[#004d00] text-white rounded-2xl font-black text-lg shadow-lg shadow-green-200 hover:bg-green-800 transition-all active:scale-95 flex items-center justify-center gap-2"
-                                                   
+              
