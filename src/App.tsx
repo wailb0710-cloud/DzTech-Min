@@ -247,16 +247,4 @@ export const VOCATIONAL_SKILLS: VocationalSkill[] = [
     ]
   },
   
-  {
-    id: 'artistic_blacksmith',
-    title: "الحدادة الفنية والتشكيل المعدني (Ferronnerie d'Art)",
-    category: 'صناعة ميكانيكية ومعدنية',
-    level: 'شهادة الكفاءة المهنية (CAP)',
-    avgSalary: '45,000 - 125,000 دج/شهرياً',
-    suitableEducationLevels: ['مستوى دون دراسي / الطور الابتدائي'],
-    levelAdvice: 'الأمنية المزخرفة',
-    diplomaType: 'شهادة الكفاءة المهنية (CAP)',
-    trainingDuration: '12 شهراً',
-    registrationLink: 'https://erp.takwin.dz'
-  }
-     
+  
