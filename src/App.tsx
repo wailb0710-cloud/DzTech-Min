@@ -1,29 +1,17 @@
 import { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { 
-  Search, 
   GraduationCap, 
+  Search, 
+  BookOpen, 
   Briefcase, 
-  TrendingUp, 
   Filter, 
-  ChevronRight,
-  BookOpen,
+  CheckCircle, 
+  XCircle, 
+  Award, 
   Heart,
+  Megaphone,
   Sparkles,
-  MessageSquare,
-  ChevronDown,
-  Building2,
-  Star,
-  Video,
-  ZoomIn,
-  ZoomOut,
-  Maximize2,
-  Minimize2,
-  Type,
-  Scale,
-  MapPin,
-  CheckCircle2,
-  X,
   Wrench,
   Bot
 } from 'lucide-react';
@@ -185,6 +173,9 @@ const INITIAL_DATA: Specialization[] = [
   }
 ];
 
+const CATEGORIES = ['الكل', 'العلوم الطبية', 'التكنولوجيا', 'الهندسة', 'الاقتصاد', 'اللغات', 'العلوم الإنسانية', 'العلوم الطبيعية', 'العلوم الأساسية'];
+const STREAMS = ['الكل', 'علوم تجريبية', 'رياضيات', 'تقني رياضي', 'تسيير واقتصاد', 'آداب وفلسفة', 'لغات أجنبية'];
+
 export default function App() {
   const [mainSection, setMainSection] = useState<'university' | 'vocational'>('university');
   const [view, setView] = useState<'home' | 'favorites' | 'promo'>('home');
@@ -194,50 +185,8 @@ export default function App() {
   const [selectedStream, setSelectedStream] = useState<string>('الكل');
   const [showAllRegardlessOfGrade, setShowAllRegardlessOfGrade] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [showAdvisor, setShowAdvisor] = useState(false);
-  const [isDiscovering, setIsDiscovering] = useState(false);
   const [showAIChatModal, setShowAIChatModal] = useState(false);
-  const [aiChatEduLevel, setAiChatEduLevel] = useState<string | undefined>(undefined);
 
-  // ميزات التكبير والمقارنة الجديدة
-  const [zoomLevel, setZoomLevel] = useState<'normal' | 'large' | 'xlarge'>('normal');
-  const [zoomedSpec, setZoomedSpec] = useState<Specialization | null>(null);
-  const [comparisonList, setComparisonList] = useState<string[]>([]);
-  const [showComparisonModal, setShowComparisonModal] = useState(false);
-
-  const toggleComparison = (id: string) => {
-    setComparisonList(prev => {
-      if (prev.includes(id)) {
-        return prev.filter(item => item !== id);
-      }
-      if (prev.length >= 3) {
-        return prev;
-      }
-      return [...prev, id];
-    });
-  };
-
-  const getUniversitiesForCategory = (category: string) => {
-    switch(category) {
-      case 'العلوم الطبية':
-        return ['جامعة الجزائر 1 (بن يوسف بن خدة)', 'جامعة وهران 1 (أحمد بن بلة)', 'جامعة قسنطينة 3', 'جامعة عنابة', 'جامعة سطيف 1', 'جامعة ورقلة'];
-      case 'التكنولوجيا':
-        return ['المدرسة الوطنية العليا للذكاء الاصطناعي (سيدي عبد الله)', 'المدرسة الوطنية العليا للإعلام الآلي (ESI)', 'جامعة هواري بومدين (USTHB)', 'جامعة قسنطينة 2'];
-      case 'الهندسة':
-        return ['المدرسة الوطنية متعددة التقنيات (Polytechnique)', 'جامعة بومرداس (M\'Hamed Bougara)', 'جامعة وهران للعلوم والتكنولوجيا (USTO)'];
-      case 'الاقتصاد':
-        return ['المدرسة العليا للتجارة (ESC القليعة)', 'المدرسة الوطنية العليا للمصرفية', 'جامعة الجزائر 3 (دالي إبراهيم)', 'جامعة سطيف 1'];
-      case 'اللغات':
-        return ['جامعة الجزائر 2 (بوزريعة)', 'جامعة وهران 2', 'جامعة قسنطينة 1', 'جامعة باتنة 1'];
-      default:
-        return ['جامعة الجزائر العاصمة', 'جامعة وهران', 'جامعة قسنطينة', 'جامعة سطيف', 'جامعة عنابة', 'جامعة تلمسان', 'جامعة ورقلة'];
-    }
-  };
-
-  const categories = ['الكل', ...new Set(INITIAL_DATA.map(s => s.category))];
-  const streams = ['الكل', 'علوم تجريبية', 'رياضيات', 'تقني رياضي', 'آداب وفلسفة', 'لغات أجنبية', 'تسيير واقتصاد'];
-
-  // تحسين تطبيع النص العربي للبحث بشكل أكثر شمولاً
   const normalizeArabic = (text: string | undefined | null) => {
     if (!text) return '';
     return text
@@ -245,9 +194,9 @@ export default function App() {
       .replace(/[أإآ]/g, 'ا')
       .replace(/ة/g, 'ه')
       .replace(/ى/g, 'ي')
-      .replace(/ـ/g, '') // إزالة التطويل
-      .replace(/[\u064B-\u0652]/g, '') // إزالة التشكيل (الفتحة، الضمة، إلخ)
-      .replace(/\s+/g, ' ') // توحيد المسافات
+      .replace(/ـ/g, '')
+      .replace(/[\u064B-\u0652]/g, '')
+      .replace(/\s+/g, ' ')
       .trim()
       .toLowerCase();
   };
@@ -266,7 +215,6 @@ export default function App() {
 
       return baseData
         .filter(spec => {
-          // 1. شرط البحث النصي
           const specName = normalizeArabic(spec.name);
           const specJobs = spec.jobs.map(j => normalizeArabic(j)).join(' ');
           const specDesc = normalizeArabic(spec.description);
@@ -274,14 +222,8 @@ export default function App() {
           
           const fullContent = `${specName} ${specJobs} ${specDesc} ${specCat}`;
           const matchesSearch = queryWords.length === 0 || queryWords.every(word => fullContent.includes(word));
-          
-          // 2. شرط المعدل
           const matchesGrade = showAllRegardlessOfGrade || normalizedGrade === '' || normalizedGrade >= spec.minGrade;
-          
-          // 3. شرط التصنيف
           const matchesCategory = selectedCategory === 'الكل' || spec.category === selectedCategory;
-
-          // 4. شرط الشعبة
           const matchesStream = selectedStream === 'الكل' || spec.streams.includes(selectedStream);
           
           return matchesSearch && matchesGrade && matchesCategory && matchesStream;
@@ -292,54 +234,6 @@ export default function App() {
       return INITIAL_DATA;
     }
   }, [view, favorites, searchQuery, userGrade, selectedCategory, selectedStream, showAllRegardlessOfGrade]);
-
-  const handleGradeChange = (val: string) => {
-    // السماح بالأرقام، النقطة، والفاصلة فقط
-    const sanitized = val.replace(/[^0-9.,]/g, '');
-    setUserGrade(sanitized);
-  };
-
-  const resultsWithoutGradeFilter = useMemo(() => {
-    const normalizedQuery = normalizeArabic(searchQuery);
-    const queryWords = normalizedQuery.split(' ').filter(w => w.length > 0);
-    
-    let baseData = INITIAL_DATA;
-    if (view === 'favorites') {
-      baseData = INITIAL_DATA.filter(spec => favorites.includes(spec.id));
-    }
-
-    return baseData.filter(spec => {
-      const fullContent = `${normalizeArabic(spec.name)} ${spec.jobs.map(j => normalizeArabic(j)).join(' ')} ${normalizeArabic(spec.description)} ${normalizeArabic(spec.category)}`;
-      const matchesSearch = queryWords.length === 0 || queryWords.every(word => fullContent.includes(word));
-      const matchesCategory = selectedCategory === 'الكل' || spec.category === selectedCategory;
-      return matchesSearch && matchesCategory;
-    });
-  }, [view, favorites, searchQuery, selectedCategory]);
-
-  const resultsWithoutSearchFilter = useMemo(() => {
-    const gradeValue = userGrade.replace(',', '.');
-    const normalizedGrade = gradeValue === '' ? '' : Number(gradeValue);
-
-    let baseData = INITIAL_DATA;
-    if (view === 'favorites') {
-      baseData = INITIAL_DATA.filter(spec => favorites.includes(spec.id));
-    }
-
-    return baseData.filter(spec => {
-      const matchesGrade = showAllRegardlessOfGrade || normalizedGrade === '' || normalizedGrade >= spec.minGrade;
-      const matchesCategory = selectedCategory === 'الكل' || spec.category === selectedCategory;
-      return matchesGrade && matchesCategory;
-    });
-  }, [view, favorites, userGrade, selectedCategory, showAllRegardlessOfGrade]);
-
-  const isGradeTheBottleneck = filteredSpecializations.length === 0 && resultsWithoutGradeFilter.length > 0;
-  const isSearchTheBottleneck = filteredSpecializations.length === 0 && resultsWithoutSearchFilter.length > 0;
-
-  const isEligible = (minGrade: number) => {
-    if (userGrade === '') return true;
-    const gradeValue = userGrade.replace(',', '.');
-    return Number(gradeValue) >= minGrade;
-  };
 
   const toggleFavorite = (id: string) => {
     setFavorites(prev => 
@@ -353,148 +247,228 @@ export default function App() {
     const grade = Number(gradeValue);
     if (isNaN(grade)) return "يا خويا/ختي، دخل معدل صحيح (مثال: 14.50)";
 
-    // العثور على أفضل تخصص من حيث الطلب في سوق العمل والمناسب للمعدل
     const eligibleSpecs = INITIAL_DATA.filter(s => grade >= s.minGrade)
       .sort((a, b) => b.marketDemand - a.marketDemand);
 
-    const eligibleInCat = eligibleSpecs.filter(s => 
-      selectedCategory === 'الكل' || s.category === selectedCategory
-    );
-
-    const topSpec = eligibleInCat[0] || eligibleSpecs[0];
+    const topSpec = eligibleSpecs[0];
     
     let advice = "";
-    
-    if (grade >= 16) {
-      advice = `تبارك الله! بمعدل ${userGrade} عندك خيارات قوية بزاف. `;
-    } else if (grade >= 14) {
-      advice = `معدل ${userGrade} بزاف هايل، يفتحلك بيبان لتخصصات ممتازة. `;
-    } else if (grade >= 12) {
-      advice = `معدل ${userGrade} مليح، تقدر دير بيه تخصصات عندها مستقبل واعد. `;
-    } else if (grade >= 10) {
-      advice = `مبروك عليك الباك! بمعدل ${userGrade} كاين تخصصات ملاح تقدر تنجح فيهم وتطور روحك. `;
-    } else {
-      advice = "ما تفشلش، الصح في الإرادة والخدمة، كاين تخصصات بزاف تقدر تبدع فيهم. ";
-    }
+    if (grade >= 16) advice = `تبارك الله! بمعدل ${userGrade} عندك خيارات قوية بزاف. `;
+    else if (grade >= 14) advice = `معدل ${userGrade} بزاف هايل، يفتحلك بيبان لتخصصات ممتازة. `;
+    else if (grade >= 12) advice = `معدل ${userGrade} مليح، تقدر دير بيه تخصصات عندها مستقبل واعد. `;
+    else advice = `مبروك عليك الباك! بمعدل ${userGrade} كاين تخصصات ملاح تقدر تنجح فيهم. `;
 
     if (topSpec) {
-      if (selectedCategory !== 'الكل' && topSpec.category === selectedCategory) {
-        advice += `بما أنك مهتم بـ ${selectedCategory}، ننصحك بـ "${topSpec.name}" راهو مطلوب بزاف (الطلب: ${topSpec.marketDemand}/10). `;
-      } else {
-        advice += `ننصحك تشوف "${topSpec.name}"، راهو تخصص مطلوب بزاف في سوق العمل حالياً. `;
-      }
-    }
-
-    if (favorites.length > 0) {
-      advice += `راك حفظت ${favorites.length} تخصصات في المفضلة، ركز عليهم وشوف اللي يخرج على طموحك!`;
-    } else {
-      advice += "ما تنساش تضغط على القلب ❤️ باش تحفظ التخصصات اللي عجبوك.";
+      advice += `ننصحك تشوف "${topSpec.name}"، راهو تخصص مطلوب بزاف في سوق العمل.`;
     }
 
     return advice;
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans text-right" dir="rtl">
-      {/* Hero Section */}
-      <header className="bg-[#004d00] text-white pt-8 pb-12 px-4 shadow-lg">
-        {/* Top Dual Section Toggle Buttons */}
-        <div className="max-w-6xl mx-auto px-4 mb-8">
-          <div className="bg-white/10 backdrop-blur-lg p-2 rounded-3xl border border-white/20 flex flex-col sm:flex-row gap-2 max-w-2xl mx-auto shadow-2xl">
-            <button
-              onClick={() => setMainSection('university')}
-              className={`flex-1 py-3.5 px-6 rounded-2xl font-black text-sm md:text-base transition-all flex items-center justify-center gap-2.5 ${
-                mainSection === 'university'
-                  ? 'bg-white text-[#004d00] shadow-xl scale-[1.02]'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              <GraduationCap className="w-5 h-5" />
-              التوجيه الجامعي 🎓
-            </button>
-
-            <button
-              onClick={() => setMainSection('vocational')}
-              className={`flex-1 py-3.5 px-6 rounded-2xl font-black text-sm md:text-base transition-all flex items-center justify-center gap-2.5 ${
-                mainSection === 'vocational'
-                  ? 'bg-emerald-400 text-slate-950 shadow-xl scale-[1.02]'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              <Wrench className="w-5 h-5" />
-              التوجيه المهني والمهارات 🛠️
-            </button>
-          </div>
-        </div>
-
-        {mainSection === 'university' ? (
-          <>
-            <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="text-center md:text-right"
-              >
-                <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
-                  <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
-                    <GraduationCap className="w-10 h-10 text-white" />
-                  </div>
-                  <h1 className="text-3xl font-black tracking-tight">DzTech Mind</h1>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-4">Dz-Orientation</h2>
-                <p className="text-xl text-green-100 max-w-xl">
-                  دليلك الذكي لاختيار التخصص الجامعي في الجزائر (توقعات 2026) بناءً على معدلك وسوق العمل.
-                </p>
-                <p className="text-sm text-green-200/70 mt-2 italic">
-                  * ملاحظة: المعدلات هي توقعات أولية لسنة 2026 بناءً على توجهات السنوات السابقة.
-                </p>
-              </motion.div>
-              
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-white/10 p-6 rounded-3xl backdrop-blur-md border border-white/20"
-              >
-                <div className="flex items-center gap-3 mb-4 text-green-100">
-                  <Sparkles className="w-6 h-6" />
-                  <span className="font-bold">المستشار الذكي</span>
-                </div>
-                <p className="text-lg leading-relaxed mb-4 min-h-[80px] max-w-[300px]">
-                  "{getAdvisorAdvice()}"
-                </p>
-                <button 
-                  onClick={() => setShowAIChatModal(true)}
-                  className="w-full py-2.5 bg-gradient-to-r from-emerald-400 to-teal-300 text-slate-950 rounded-xl font-black hover:brightness-110 transition-all flex items-center justify-center gap-2 shadow-lg"
-                >
-                  <Bot className="w-5 h-5 text-slate-950" />
-                  تحدث مع مساعد DzTech الذكي 🤖
-                </button>
-              </motion.div>
+    <div className="min-h-screen bg-slate-900 text-slate-100 font-sans pb-12 dir-rtl" dir="rtl">
+      {/* Header */}
+      <header className="bg-slate-800/80 backdrop-blur-md border-b border-slate-700/50 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            {/* Logo */}
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 bg-gradient-to-tr from-emerald-500 to-teal-400 rounded-2xl shadow-lg shadow-emerald-500/20">
+                <GraduationCap className="w-8 h-8 text-slate-950" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-black bg-gradient-to-r from-emerald-400 to-teal-200 bg-clip-text text-transparent">
+                  DzTech Mind
+                </h1>
+                <p className="text-xs text-slate-400 font-medium">منصة التوجيه الذكي للمستقبل 🇩🇿</p>
+              </div>
             </div>
 
-            {/* Navigation Tabs for University Subviews */}
-            <div className="max-w-6xl mx-auto px-4 mt-8 flex justify-center">
-              <div className="bg-white/10 backdrop-blur-md p-1.5 rounded-2xl flex flex-wrap justify-center gap-1.5 sm:gap-2 border border-white/20">
-                <button
-                  onClick={() => setView('home')}
-                  className={`px-3 sm:px-8 py-2.5 sm:py-3 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center gap-1.5 sm:gap-2 ${
-                    view === 'home' 
-                      ? 'bg-white text-[#004d00] shadow-lg' 
-                      : 'text-white hover:bg-white/10'
-                  }`}
-                >
-                  <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5" />
-                  الرئيسية
-                </button>
-                <button
-                  onClick={() => setView('favorites')}
-                  className={`px-3 sm:px-8 py-2.5 sm:py-3 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center gap-1.5 sm:gap-2 relative ${
-                    view === 'favorites' 
-                      ? 'bg-white text-[#004d00] shadow-lg' 
-                      : 'text-white hover:bg-white/10'
-                  }`}
-                >
-                  <Heart className={`w-4 h-4 sm:w-5 sm:h-5 ${view === 'favorites' ? 'fill-current' : ''}`} />
-                  المفضلة
+            {/* Navigation Tabs */}
+            <div className="flex items-center gap-2 bg-slate-900/80 p-1.5 rounded-2xl border border-slate-700/50">
+              <button
+                onClick={() => { setMainSection('university'); setView('home'); }}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${
+                  mainSection === 'university' && view !== 'promo'
+                    ? 'bg-emerald-500 text-slate-950 shadow-md'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <GraduationCap className="w-4 h-4" />
+                التوجيه الجامعي
+              </button>
 
-                  
+              <button
+                onClick={() => { setMainSection('vocational'); setView('home'); }}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${
+                  mainSection === 'vocational'
+                    ? 'bg-emerald-500 text-slate-950 shadow-md'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <Wrench className="w-4 h-4" />
+                التوجيه المهني
+              </button>
+
+              <button
+                onClick={() => setView('promo')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${
+                  view === 'promo'
+                    ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <Megaphone className="w-4 h-4" />
+                صانع البطاقات
+              </button>
+            </div>
+
+            {/* Favorites Button */}
+            <button
+              onClick={() => { setMainSection('university'); setView(view === 'favorites' ? 'home' : 'favorites'); }}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold border transition-all ${
+                view === 'favorites'
+                  ? 'bg-rose-500/20 border-rose-500 text-rose-300'
+                  : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
+              }`}
+            >
+              <Heart className={`w-4 h-4 sm:w-5 sm:h-5 ${view === 'favorites' ? 'fill-current' : ''}`} />
+              المفضلة ({favorites.length})
+            </button>
+
+          </div>
+        </div>
+      </header>
+
+      {/* Main Container */}
+      <div className="max-w-7xl mx-auto px-4 mt-6">
+        {view === 'promo' ? (
+          <PromoCreator />
+        ) : mainSection === 'vocational' ? (
+          <VocationalGuidance />
+        ) : (
+          <div className="space-y-6">
+            
+            {/* AI Advisor Banner */}
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-slate-800 p-6 rounded-3xl border border-emerald-500/30 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6"
+            >
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-emerald-500/20 text-emerald-400 rounded-2xl border border-emerald-500/30 shrink-0">
+                  <Sparkles className="w-8 h-8" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-emerald-300 mb-1">المستشار الذكي (DzTech Advisor)</h2>
+                  <p className="text-slate-300 text-sm leading-relaxed">{getAdvisorAdvice()}</p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setShowAIChatModal(true)}
+                className="w-full md:w-auto px-6 py-3.5 bg-gradient-to-r from-emerald-400 to-teal-300 text-slate-950 font-black rounded-2xl hover:brightness-110 shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 shrink-0 transition-all"
+              >
+                <Bot className="w-5 h-5 text-slate-950" />
+                تحدث مع المساعد الذكي 🤖
+              </button>
+            </motion.div>
+
+            {/* Filter Section */}
+            <div className="bg-slate-800/60 p-6 rounded-3xl border border-slate-700/50 space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                
+                {/* Search input */}
+                <div className="relative md:col-span-1">
+                  <Search className="w-5 h-5 absolute right-3.5 top-3.5 text-slate-400" />
+                  <input
+                    type="text"
+                    placeholder="ابحث عن تخصص، شركة، أو مجال..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full bg-slate-900/90 border border-slate-700 rounded-2xl pr-11 pl-4 py-3 text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:border-emerald-500"
+                  />
+                </div>
+
+                {/* Grade input */}
+                <div className="relative md:col-span-1">
+                  <Award className="w-5 h-5 absolute right-3.5 top-3.5 text-slate-400" />
+                  <input
+                    type="text"
+                    placeholder="أدخل معدلك في الباك..."
+                    value={userGrade}
+                    onChange={(e) => setUserGrade(e.target.value)}
+                    className="w-full bg-slate-900/90 border border-slate-700 rounded-2xl pr-11 pl-4 py-3 text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:border-emerald-500"
+                  />
+                </div>
+
+                {/* Category select */}
+                <div className="relative md:col-span-1">
+                  <Filter className="w-5 h-5 absolute right-3.5 top-3.5 text-slate-400" />
+                  <select
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    className="w-full bg-slate-900/90 border border-slate-700 rounded-2xl pr-11 pl-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
+                  >
+                    {CATEGORIES.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+                  </select>
+                </div>
+
+                {/* Stream select */}
+                <div className="relative md:col-span-1">
+                  <BookOpen className="w-5 h-5 absolute right-3.5 top-3.5 text-slate-400" />
+                  <select
+                    value={selectedStream}
+                    onChange={(e) => setSelectedStream(e.target.value)}
+                    className="w-full bg-slate-900/90 border border-slate-700 rounded-2xl pr-11 pl-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer"
+                  >
+                    {STREAMS.map(st => <option key={st} value={st}>{st}</option>)}
+                  </select>
+                </div>
+
+              </div>
+
+              {/* Show all toggle */}
+              <div className="flex items-center justify-between pt-2 border-t border-slate-700/50">
+                <label className="flex items-center gap-2 text-sm text-slate-300 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={showAllRegardlessOfGrade}
+                    onChange={(e) => setShowAllRegardlessOfGrade(e.target.checked)}
+                    className="w-4 h-4 rounded border-slate-700 text-emerald-500 focus:ring-emerald-500 bg-slate-900"
+                  />
+                  عرض كل التخصصات بغض النظر عن المعدل
+                </label>
+                <p className="text-xs text-slate-400">
+                  عدد التخصصات المعروضة: <span className="text-emerald-400 font-bold">{filteredSpecializations.length}</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Specializations Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredSpecializations.map((spec) => {
+                const userGradeNum = Number(userGrade.replace(',', '.'));
+                const isEligible = userGrade !== '' && !isNaN(userGradeNum) && userGradeNum >= spec.minGrade;
+                const isNotEligible = userGrade !== '' && !isNaN(userGradeNum) && userGradeNum < spec.minGrade;
+
+                return (
+                  <motion.div
+                    key={spec.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="bg-slate-800/80 border border-slate-700/70 rounded-3xl p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all shadow-lg relative group"
+                  >
+                    <div>
+                      <div className="flex items-start justify-between gap-3 mb-3">
+                        <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full border border-emerald-500/20">
+                          {spec.category}
+                        </span>
+                        <button
+                          onClick={() => toggleFavorite(spec.id)}
+                          className="p-2 text-slate-400 hover:text-rose-400 transition-colors"
+                        >
+                          <Heart className={`w-5 h-5 ${favorites.includes(spec.id) ? 'fill-rose-500 text-rose-500' : ''}`} />
+                        <
