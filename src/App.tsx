@@ -13,9 +13,24 @@ import {
   MessageSquare,
   ChevronDown,
   Building2,
-  Star
+  Star,
+  Video,
+  ZoomIn,
+  ZoomOut,
+  Maximize2,
+  Minimize2,
+  Type,
+  Scale,
+  MapPin,
+  CheckCircle2,
+  X,
+  Wrench,
+  Bot
 } from 'lucide-react';
 import { Specialization } from './types';
+import PromoCreator from './components/PromoCreator';
+import VocationalGuidance from './components/VocationalGuidance';
+import AIChatModal from './components/AIChatModal';
 
 const INITIAL_DATA: Specialization[] = [
   {
@@ -171,7 +186,8 @@ const INITIAL_DATA: Specialization[] = [
 ];
 
 export default function App() {
-  const [view, setView] = useState<'home' | 'favorites'>('home');
+  const [mainSection, setMainSection] = useState<'university' | 'vocational'>('university');
+  const [view, setView] = useState<'home' | 'favorites' | 'promo'>('home');
   const [searchQuery, setSearchQuery] = useState('');
   const [userGrade, setUserGrade] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('الكل');
@@ -180,6 +196,43 @@ export default function App() {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [showAdvisor, setShowAdvisor] = useState(false);
   const [isDiscovering, setIsDiscovering] = useState(false);
+  const [showAIChatModal, setShowAIChatModal] = useState(false);
+  const [aiChatEduLevel, setAiChatEduLevel] = useState<string | undefined>(undefined);
+
+  // ميزات التكبير والمقارنة الجديدة
+  const [zoomLevel, setZoomLevel] = useState<'normal' | 'large' | 'xlarge'>('normal');
+  const [zoomedSpec, setZoomedSpec] = useState<Specialization | null>(null);
+  const [comparisonList, setComparisonList] = useState<string[]>([]);
+  const [showComparisonModal, setShowComparisonModal] = useState(false);
+
+  const toggleComparison = (id: string) => {
+    setComparisonList(prev => {
+      if (prev.includes(id)) {
+        return prev.filter(item => item !== id);
+      }
+      if (prev.length >= 3) {
+        return prev;
+      }
+      return [...prev, id];
+    });
+  };
+
+  const getUniversitiesForCategory = (category: string) => {
+    switch(category) {
+      case 'العلوم الطبية':
+        return ['جامعة الجزائر 1 (بن يوسف بن خدة)', 'جامعة وهران 1 (أحمد بن بلة)', 'جامعة قسنطينة 3', 'جامعة عنابة', 'جامعة سطيف 1', 'جامعة ورقلة'];
+      case 'التكنولوجيا':
+        return ['المدرسة الوطنية العليا للذكاء الاصطناعي (سيدي عبد الله)', 'المدرسة الوطنية العليا للإعلام الآلي (ESI)', 'جامعة هواري بومدين (USTHB)', 'جامعة قسنطينة 2'];
+      case 'الهندسة':
+        return ['المدرسة الوطنية متعددة التقنيات (Polytechnique)', 'جامعة بومرداس (M\'Hamed Bougara)', 'جامعة وهران للعلوم والتكنولوجيا (USTO)'];
+      case 'الاقتصاد':
+        return ['المدرسة العليا للتجارة (ESC القليعة)', 'المدرسة الوطنية العليا للمصرفية', 'جامعة الجزائر 3 (دالي إبراهيم)', 'جامعة سطيف 1'];
+      case 'اللغات':
+        return ['جامعة الجزائر 2 (بوزريعة)', 'جامعة وهران 2', 'جامعة قسنطينة 1', 'جامعة باتنة 1'];
+      default:
+        return ['جامعة الجزائر العاصمة', 'جامعة وهران', 'جامعة قسنطينة', 'جامعة سطيف', 'جامعة عنابة', 'جامعة تلمسان', 'جامعة ورقلة'];
+    }
+  };
 
   const categories = ['الكل', ...new Set(INITIAL_DATA.map(s => s.category))];
   const streams = ['الكل', 'علوم تجريبية', 'رياضيات', 'تقني رياضي', 'آداب وفلسفة', 'لغات أجنبية', 'تسيير واقتصاد'];
@@ -344,164 +397,104 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-right" dir="rtl">
       {/* Hero Section */}
-      <header className="bg-[#004d00] text-white py-12 px-4 shadow-lg">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-center md:text-right"
-          >
-            <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
-              <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
-                <GraduationCap className="w-10 h-10 text-white" />
-              </div>
-              <h1 className="text-3xl font-black tracking-tight">DzTech Mind</h1>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Dz-Orientation</h2>
-            <p className="text-xl text-green-100 max-w-xl">
-              دليلك الذكي لاختيار التخصص الجامعي في الجزائر (توقعات 2026) بناءً على معدلك وسوق العمل.
-            </p>
-            <p className="text-sm text-green-200/70 mt-2 italic">
-              * ملاحظة: المعدلات هي توقعات أولية لسنة 2026 بناءً على توجهات السنوات السابقة.
-            </p>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-white/10 p-6 rounded-3xl backdrop-blur-md border border-white/20"
-          >
-            <div className="flex items-center gap-3 mb-4 text-green-100">
-              <Sparkles className="w-6 h-6" />
-              <span className="font-bold">المستشار الذكي</span>
-            </div>
-            <p className="text-lg leading-relaxed mb-4 min-h-[80px] max-w-[300px]">
-              "{getAdvisorAdvice()}"
-            </p>
-            <button 
-              onClick={() => setShowAdvisor(!showAdvisor)}
-              className="w-full py-2 bg-white text-[#004d00] rounded-xl font-bold hover:bg-green-50 transition-colors"
-            >
-              تحدث مع المستشار
-            </button>
-          </motion.div>
-        </div>
-
-        {/* Navigation Tabs */}
-        <div className="max-w-6xl mx-auto px-4 mt-8 flex justify-center">
-          <div className="bg-white/10 backdrop-blur-md p-1.5 rounded-2xl flex gap-2 border border-white/20">
+      <header className="bg-[#004d00] text-white pt-8 pb-12 px-4 shadow-lg">
+        {/* Top Dual Section Toggle Buttons */}
+        <div className="max-w-6xl mx-auto px-4 mb-8">
+          <div className="bg-white/10 backdrop-blur-lg p-2 rounded-3xl border border-white/20 flex flex-col sm:flex-row gap-2 max-w-2xl mx-auto shadow-2xl">
             <button
-              onClick={() => setView('home')}
-              className={`px-8 py-3 rounded-xl font-black text-sm transition-all flex items-center gap-2 ${
-                view === 'home' 
-                  ? 'bg-white text-[#004d00] shadow-lg' 
-                  : 'text-white hover:bg-white/10'
+              onClick={() => setMainSection('university')}
+              className={`flex-1 py-3.5 px-6 rounded-2xl font-black text-sm md:text-base transition-all flex items-center justify-center gap-2.5 ${
+                mainSection === 'university'
+                  ? 'bg-white text-[#004d00] shadow-xl scale-[1.02]'
+                  : 'text-white/80 hover:text-white hover:bg-white/10'
               }`}
             >
               <GraduationCap className="w-5 h-5" />
-              الرئيسية
+              التوجيه الجامعي 🎓
             </button>
+
             <button
-              onClick={() => setView('favorites')}
-              className={`px-8 py-3 rounded-xl font-black text-sm transition-all flex items-center gap-2 relative ${
-                view === 'favorites' 
-                  ? 'bg-white text-[#004d00] shadow-lg' 
-                  : 'text-white hover:bg-white/10'
+              onClick={() => setMainSection('vocational')}
+              className={`flex-1 py-3.5 px-6 rounded-2xl font-black text-sm md:text-base transition-all flex items-center justify-center gap-2.5 ${
+                mainSection === 'vocational'
+                  ? 'bg-emerald-400 text-slate-950 shadow-xl scale-[1.02]'
+                  : 'text-white/80 hover:text-white hover:bg-white/10'
               }`}
             >
-              <Heart className={`w-5 h-5 ${view === 'favorites' ? 'fill-current' : ''}`} />
-              المفضلة
-              {favorites.length > 0 && (
-                <span className="absolute -top-2 -left-2 w-6 h-6 bg-red-500 text-white text-[10px] flex items-center justify-center rounded-full border-2 border-[#004d00] font-black animate-bounce">
-                  {favorites.length}
-                </span>
-              )}
+              <Wrench className="w-5 h-5" />
+              التوجيه المهني والمهارات 🛠️
             </button>
           </div>
         </div>
-      </header>
 
-      <main className="max-w-6xl mx-auto px-4 -mt-8 pb-20">
-        {/* View Title */}
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-2xl font-black text-gray-800 flex items-center gap-3">
-            {view === 'favorites' ? (
-              <>
-                <Heart className="w-8 h-8 text-red-500 fill-current" />
-                تخصصاتي المفضلة
-              </>
-            ) : (
-              <>
-                <GraduationCap className="w-8 h-8 text-[#004d00]" />
-                التخصصات المتاحة
-              </>
-            )}
-          </h2>
-          {view === 'favorites' && favorites.length > 0 && (
-            <button 
-              onClick={() => setFavorites([])}
-              className="text-red-500 text-sm font-bold hover:underline"
-            >
-              مسح الكل
-            </button>
-          )}
-        </div>
-
-        {/* Search & Filter Bar */}
-        <section className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 mb-12 border border-gray-100">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div className="relative">
-              <label className="block text-sm font-bold text-gray-700 mb-2 mr-1">المعدل (بكالوريا)</label>
-              <div className="relative">
-                <TrendingUp className="absolute right-3 top-1/2 -translate-y-1/2 text-green-700 w-5 h-5" />
-                <input
-                  type="text"
-                  inputMode="decimal"
-                  placeholder="مثال: 15.40"
-                  className="w-full pr-10 pl-4 py-3 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:border-[#004d00] transition-all outline-none font-bold text-lg"
-                  value={userGrade}
-                  onChange={(e) => handleGradeChange(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-2 mr-1">الشعبة</label>
-              <div className="relative">
-                <ChevronDown className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <select
-                  className="w-full pr-4 pl-10 py-3 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:border-[#004d00] transition-all outline-none appearance-none font-medium"
-                  value={selectedStream}
-                  onChange={(e) => setSelectedStream(e.target.value)}
-                >
-                  {streams.map(s => (
-                    <option key={s} value={s}>{s}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-2 mr-1">التصنيف</label>
-              <div className="relative">
-                <Filter className="absolute right-3 top-1/2 -translate-y-1/2 text-green-700 w-5 h-5" />
-                <select
-                  className="w-full pr-10 pl-4 py-3 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:border-[#004d00] transition-all outline-none appearance-none font-medium"
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                >
-                  {categories.map(cat => (
-                    <option key={cat} value={cat}>{cat}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="flex items-end">
-              <button 
-                onClick={() => {
-                  setIsDiscovering(true);
-                  setTimeout(() => setIsDiscovering(false), 1000);
-                }}
-                className="w-full py-3 bg-[#004d00] text-white rounded-2xl font-black text-lg shadow-lg shadow-green-200 hover:bg-green-800 transition-all active:scale-95 flex items-center justify-center gap-2"
+        {mainSection === 'university' ? (
+          <>
+            <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="text-center md:text-right"
+              >
+                <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
+                  <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+                    <GraduationCap className="w-10 h-10 text-white" />
+                  </div>
+                  <h1 className="text-3xl font-black tracking-tight">DzTech Mind</h1>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-4">Dz-Orientation</h2>
+                <p className="text-xl text-green-100 max-w-xl">
+                  دليلك الذكي لاختيار التخصص الجامعي في الجزائر (توقعات 2026) بناءً على معدلك وسوق العمل.
+                </p>
+                <p className="text-sm text-green-200/70 mt-2 italic">
+                  * ملاحظة: المعدلات هي توقعات أولية لسنة 2026 بناءً على توجهات السنوات السابقة.
+                </p>
+              </motion.div>
               
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-white/10 p-6 rounded-3xl backdrop-blur-md border border-white/20"
+              >
+                <div className="flex items-center gap-3 mb-4 text-green-100">
+                  <Sparkles className="w-6 h-6" />
+                  <span className="font-bold">المستشار الذكي</span>
+                </div>
+                <p className="text-lg leading-relaxed mb-4 min-h-[80px] max-w-[300px]">
+                  "{getAdvisorAdvice()}"
+                </p>
+                <button 
+                  onClick={() => setShowAIChatModal(true)}
+                  className="w-full py-2.5 bg-gradient-to-r from-emerald-400 to-teal-300 text-slate-950 rounded-xl font-black hover:brightness-110 transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <Bot className="w-5 h-5 text-slate-950" />
+                  تحدث مع مساعد DzTech الذكي 🤖
+                </button>
+              </motion.div>
+            </div>
+
+            {/* Navigation Tabs for University Subviews */}
+            <div className="max-w-6xl mx-auto px-4 mt-8 flex justify-center">
+              <div className="bg-white/10 backdrop-blur-md p-1.5 rounded-2xl flex flex-wrap justify-center gap-1.5 sm:gap-2 border border-white/20">
+                <button
+                  onClick={() => setView('home')}
+                  className={`px-3 sm:px-8 py-2.5 sm:py-3 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center gap-1.5 sm:gap-2 ${
+                    view === 'home' 
+                      ? 'bg-white text-[#004d00] shadow-lg' 
+                      : 'text-white hover:bg-white/10'
+                  }`}
+                >
+                  <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5" />
+                  الرئيسية
+                </button>
+                <button
+                  onClick={() => setView('favorites')}
+                  className={`px-3 sm:px-8 py-2.5 sm:py-3 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center gap-1.5 sm:gap-2 relative ${
+                    view === 'favorites' 
+                      ? 'bg-white text-[#004d00] shadow-lg' 
+                      : 'text-white hover:bg-white/10'
+                  }`}
+                >
+                  <Heart className={`w-4 h-4 sm:w-5 sm:h-5 ${view === 'favorites' ? 'fill-current' : ''}`} />
+                  المفضلة
+
+                  
