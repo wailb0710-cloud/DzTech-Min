@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   GraduationCap, 
   Search, 
@@ -16,11 +16,9 @@ import {
   Bot,
   X,
   Send,
-  Share2,
   Copy
 } from 'lucide-react';
 
-// --- Definitions & Types ---
 export interface Specialization {
   id: string;
   name: string;
@@ -188,8 +186,6 @@ const INITIAL_DATA: Specialization[] = [
 const CATEGORIES = ['الكل', 'العلوم الطبية', 'التكنولوجيا', 'الهندسة', 'الاقتصاد', 'اللغات', 'العلوم الإنسانية', 'العلوم الطبيعية', 'العلوم الأساسية'];
 const STREAMS = ['الكل', 'علوم تجريبية', 'رياضيات', 'تقني رياضي', 'تسيير واقتصاد', 'آداب وفلسفة', 'لغات أجنبية'];
 
-// --- Sub-components Built-in to Prevent Missing File Errors ---
-
 function VocationalGuidance() {
   const vocationalFields = [
     { name: 'برمجة وتطوير المواقع', demand: 'عالي جداً', duration: '6 أشهر - سنة', type: 'تكوين خاص / تعلم ذاتي' },
@@ -200,7 +196,7 @@ function VocationalGuidance() {
   ];
 
   return (
-    <div className="bg-slate-800/80 p-6 rounded-3xl border border-slate-700/50 space-y-6">
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-slate-800/80 p-6 rounded-3xl border border-slate-700/50 space-y-6">
       <div className="text-center max-w-2xl mx-auto">
         <h2 className="text-2xl font-black text-emerald-400 mb-2">دليل التكوين المهني والمهارات المطلوبة</h2>
         <p className="text-slate-300 text-sm">مسارات بديلة وسريعة لدخول سوق العمل وبناء مشروعك الخاص بدون الحاجة لشهادة جامعية.</p>
@@ -218,7 +214,7 @@ function VocationalGuidance() {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -233,7 +229,7 @@ function PromoCreator() {
   };
 
   return (
-    <div className="bg-slate-800/80 p-6 rounded-3xl border border-slate-700/50 max-w-2xl mx-auto space-y-6">
+    <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} className="bg-slate-800/80 p-6 rounded-3xl border border-slate-700/50 max-w-2xl mx-auto space-y-6">
       <h2 className="text-xl font-bold text-emerald-400 flex items-center gap-2">
         <Megaphone className="w-5 h-5" /> صانع بطاقات الترويج والمنشورات
       </h2>
@@ -261,7 +257,7 @@ function PromoCreator() {
         {copied ? <CheckCircle className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
         {copied ? 'تم نسخ النص!' : 'نسخ نص المنشور'}
       </button>
-    </div>
+    </motion.div>
   );
 }
 
@@ -287,7 +283,7 @@ function AIChatModal({ onClose }: { onClose: () => void }) {
 
   return (
     <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-3xl shadow-2xl flex flex-col h-[500px]">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-3xl shadow-2xl flex flex-col h-[500px]">
         <div className="p-4 border-b border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Bot className="w-6 h-6 text-emerald-400" />
@@ -323,12 +319,11 @@ function AIChatModal({ onClose }: { onClose: () => void }) {
             <Send className="w-4 h-4" />
           </button>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
 
-// --- Main App Component ---
 export default function App() {
   const [mainSection, setMainSection] = useState<'university' | 'vocational'>('university');
   const [view, setView] = useState<'home' | 'favorites' | 'promo'>('home');
@@ -504,10 +499,6 @@ export default function App() {
           <div className="space-y-6">
             
             {/* AI Advisor Banner */}
-            <motion.div 
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-slate-800 p-6 rounded-3xl border border-emerald-500/30 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6"
-            >
+            <div className="bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-slate-800 p-6 rounded-3xl border border-emerald-500/30 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-emerald-500/20 text-emerald-4
+                <div className="p-3 bg-emerald-500/20 text-emerald-400 rounded-2xl border bor
