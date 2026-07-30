@@ -243,7 +243,9 @@ export const VOCATIONAL_SKILLS: VocationalSkill[] = [
         duration: '6 - 12 شهراً',
         description: 'تركيب القوالب الخشبية للأعمدة والأسقف وصب الخرسانة المسلحة.',
         practicalTask: 'صب عمود خرساني وقالب أساسي مع التسليح وتفريغ الهواء.',
-        skillsAcquired: ['تركيب Coffrage خشبي', 'صب Béton armé', 'قراءة مخطط بناء بسيط']
+        skillsAcquired: ['تركيب Coff
+
+                     
        }
 ];
  
