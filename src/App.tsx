@@ -35,152 +35,152 @@ import AIChatModal from './components/AIChatModal';
 const INITIAL_DATA: Specialization[] = [
   {
     id: '1',
-    name: 'الطب العام',
+    name: 'Ø§Ù„Ø·Ø¨ Ø§Ù„Ø¹Ø§Ù…',
     minGrade: 16.5,
-    jobs: ['مستشفيات حكومية', 'عيادات خاصة', 'البحث العلمي'],
-    description: 'دراسة شاملة لجسم الإنسان والأمراض وطرق علاجها.',
-    category: 'العلوم الطبية',
-    streams: ['علوم تجريبية', 'رياضيات', 'تقني رياضي'],
+    jobs: ['Ù…Ø³ØªØ´ÙÙŠØ§Øª Ø­ÙƒÙˆÙ…ÙŠØ©', 'Ø¹ÙŠØ§Ø¯Ø§Øª Ø®Ø§ØµØ©', 'Ø§Ù„Ø¨Ø­Ø« Ø§Ù„Ø¹Ù„Ù…ÙŠ'],
+    description: 'Ø¯Ø±Ø§Ø³Ø© Ø´Ø§Ù…Ù„Ø© Ù„Ø¬Ø³Ù… Ø§Ù„Ø¥Ù†Ø³Ø§Ù† ÙˆØ§Ù„Ø£Ù…Ø±Ø§Ø¶ ÙˆØ·Ø±Ù‚ Ø¹Ù„Ø§Ø¬Ù‡Ø§.',
+    category: 'Ø§Ù„Ø¹Ù„ÙˆÙ… Ø§Ù„Ø·Ø¨ÙŠØ©',
+    streams: ['Ø¹Ù„ÙˆÙ… ØªØ¬Ø±ÙŠØ¨ÙŠØ©', 'Ø±ÙŠØ§Ø¶ÙŠØ§Øª', 'ØªÙ‚Ù†ÙŠ Ø±ÙŠØ§Ø¶ÙŠ'],
     marketDemand: 9
   },
   {
     id: '2',
-    name: 'هندسة الإعلام الآلي',
+    name: 'Ù‡Ù†Ø¯Ø³Ø© Ø§Ù„Ø¥Ø¹Ù„Ø§Ù… Ø§Ù„Ø¢Ù„ÙŠ',
     minGrade: 15.0,
-    jobs: ['سوناطراك', 'جازي', 'أوريدو', 'موبيليس', 'شركات البرمجيات', 'البنوك'],
-    description: 'تخصص يركز على تطوير البرمجيات، الشبكات، والذكاء الاصطناعي.',
-    category: 'التكنولوجيا',
-    streams: ['رياضيات', 'تقني رياضي', 'علوم تجريبية'],
+    jobs: ['Ø³ÙˆÙ†Ø§Ø·Ø±Ø§Ùƒ', 'Ø¬Ø§Ø²ÙŠ', 'Ø£ÙˆØ±ÙŠØ¯Ùˆ', 'Ù…ÙˆØ¨ÙŠÙ„ÙŠØ³', 'Ø´Ø±ÙƒØ§Øª Ø§Ù„Ø¨Ø±Ù…Ø¬ÙŠØ§Øª', 'Ø§Ù„Ø¨Ù†ÙˆÙƒ'],
+    description: 'ØªØ®ØµØµ ÙŠØ±ÙƒØ² Ø¹Ù„Ù‰ ØªØ·ÙˆÙŠØ± Ø§Ù„Ø¨Ø±Ù…Ø¬ÙŠØ§ØªØŒ Ø§Ù„Ø´Ø¨ÙƒØ§ØªØŒ ÙˆØ§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ.',
+    category: 'Ø§Ù„ØªÙƒÙ†ÙˆÙ„ÙˆØ¬ÙŠØ§',
+    streams: ['Ø±ÙŠØ§Ø¶ÙŠØ§Øª', 'ØªÙ‚Ù†ÙŠ Ø±ÙŠØ§Ø¶ÙŠ', 'Ø¹Ù„ÙˆÙ… ØªØ¬Ø±ÙŠØ¨ÙŠØ©'],
     marketDemand: 10
   },
   {
     id: '3',
-    name: 'الحقوق والعلوم القانونية',
+    name: 'Ø§Ù„Ø­Ù‚ÙˆÙ‚ ÙˆØ§Ù„Ø¹Ù„ÙˆÙ… Ø§Ù„Ù‚Ø§Ù†ÙˆÙ†ÙŠØ©',
     minGrade: 12.0,
-    jobs: ['المحاماة', 'القضاء', 'الإدارات العمومية', 'الشركات'],
-    description: 'دراسة القوانين والتشريعات والأنظمة القضائية.',
-    category: 'العلوم الإنسانية',
-    streams: ['آداب وفلسفة', 'لغات أجنبية', 'تسيير واقتصاد'],
+    jobs: ['Ø§Ù„Ù…Ø­Ø§Ù…Ø§Ø©', 'Ø§Ù„Ù‚Ø¶Ø§Ø¡', 'Ø§Ù„Ø¥Ø¯Ø§Ø±Ø§Øª Ø§Ù„Ø¹Ù…ÙˆÙ…ÙŠØ©', 'Ø§Ù„Ø´Ø±ÙƒØ§Øª'],
+    description: 'Ø¯Ø±Ø§Ø³Ø© Ø§Ù„Ù‚ÙˆØ§Ù†ÙŠÙ† ÙˆØ§Ù„ØªØ´Ø±ÙŠØ¹Ø§Øª ÙˆØ§Ù„Ø£Ù†Ø¸Ù…Ø© Ø§Ù„Ù‚Ø¶Ø§Ø¦ÙŠØ©.',
+    category: 'Ø§Ù„Ø¹Ù„ÙˆÙ… Ø§Ù„Ø¥Ù†Ø³Ø§Ù†ÙŠØ©',
+    streams: ['Ø¢Ø¯Ø§Ø¨ ÙˆÙÙ„Ø³ÙØ©', 'Ù„ØºØ§Øª Ø£Ø¬Ù†Ø¨ÙŠØ©', 'ØªØ³ÙŠÙŠØ± ÙˆØ§Ù‚ØªØµØ§Ø¯'],
     marketDemand: 6
   },
   {
     id: '4',
-    name: 'هندسة البترول',
+    name: 'Ù‡Ù†Ø¯Ø³Ø© Ø§Ù„Ø¨ØªØ±ÙˆÙ„',
     minGrade: 15.5,
-    jobs: ['سوناطراك', 'شركات الطاقة الدولية', 'مراكز البحث'],
-    description: 'تخصص تقني يركز على استخراج وتكرير النفط والغاز.',
-    category: 'الهندسة',
-    streams: ['رياضيات', 'تقني رياضي', 'علوم تجريبية'],
+    jobs: ['Ø³ÙˆÙ†Ø§Ø·Ø±Ø§Ùƒ', 'Ø´Ø±ÙƒØ§Øª Ø§Ù„Ø·Ø§Ù‚Ø© Ø§Ù„Ø¯ÙˆÙ„ÙŠØ©', 'Ù…Ø±Ø§ÙƒØ² Ø§Ù„Ø¨Ø­Ø«'],
+    description: 'ØªØ®ØµØµ ØªÙ‚Ù†ÙŠ ÙŠØ±ÙƒØ² Ø¹Ù„Ù‰ Ø§Ø³ØªØ®Ø±Ø§Ø¬ ÙˆØªÙƒØ±ÙŠØ± Ø§Ù„Ù†ÙØ· ÙˆØ§Ù„ØºØ§Ø².',
+    category: 'Ø§Ù„Ù‡Ù†Ø¯Ø³Ø©',
+    streams: ['Ø±ÙŠØ§Ø¶ÙŠØ§Øª', 'ØªÙ‚Ù†ÙŠ Ø±ÙŠØ§Ø¶ÙŠ', 'Ø¹Ù„ÙˆÙ… ØªØ¬Ø±ÙŠØ¨ÙŠØ©'],
     marketDemand: 9
   },
   {
     id: '5',
-    name: 'علوم الطيران',
+    name: 'Ø¹Ù„ÙˆÙ… Ø§Ù„Ø·ÙŠØ±Ø§Ù†',
     minGrade: 16.0,
-    jobs: ['الخطوط الجوية الجزائرية', 'المطارات', 'القوات الجوية'],
-    description: 'دراسة ميكانيكا الطيران وأنظمة الملاحة الجوية.',
-    category: 'الهندسة',
-    streams: ['رياضيات', 'تقني رياضي'],
+    jobs: ['Ø§Ù„Ø®Ø·ÙˆØ· Ø§Ù„Ø¬ÙˆÙŠØ© Ø§Ù„Ø¬Ø²Ø§Ø¦Ø±ÙŠØ©', 'Ø§Ù„Ù…Ø·Ø§Ø±Ø§Øª', 'Ø§Ù„Ù‚ÙˆØ§Øª Ø§Ù„Ø¬ÙˆÙŠØ©'],
+    description: 'Ø¯Ø±Ø§Ø³Ø© Ù…ÙŠÙƒØ§Ù†ÙŠÙƒØ§ Ø§Ù„Ø·ÙŠØ±Ø§Ù† ÙˆØ£Ù†Ø¸Ù…Ø© Ø§Ù„Ù…Ù„Ø§Ø­Ø© Ø§Ù„Ø¬ÙˆÙŠØ©.',
+    category: 'Ø§Ù„Ù‡Ù†Ø¯Ø³Ø©',
+    streams: ['Ø±ÙŠØ§Ø¶ÙŠØ§Øª', 'ØªÙ‚Ù†ÙŠ Ø±ÙŠØ§Ø¶ÙŠ'],
     marketDemand: 8
   },
   {
     id: '6',
-    name: 'اللغة الإنجليزية',
+    name: 'Ø§Ù„Ù„ØºØ© Ø§Ù„Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠØ©',
     minGrade: 11.5,
-    jobs: ['التعليم', 'الترجمة', 'الشركات الأجنبية', 'كوندور'],
-    description: 'دراسة اللغة والأدب الإنجليزي ومهارات التواصل.',
-    category: 'اللغات',
-    streams: ['لغات أجنبية', 'آداب وفلسفة', 'علوم تجريبية'],
+    jobs: ['Ø§Ù„ØªØ¹Ù„ÙŠÙ…', 'Ø§Ù„ØªØ±Ø¬Ù…Ø©', 'Ø§Ù„Ø´Ø±ÙƒØ§Øª Ø§Ù„Ø£Ø¬Ù†Ø¨ÙŠØ©', 'ÙƒÙˆÙ†Ø¯ÙˆØ±'],
+    description: 'Ø¯Ø±Ø§Ø³Ø© Ø§Ù„Ù„ØºØ© ÙˆØ§Ù„Ø£Ø¯Ø¨ Ø§Ù„Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠ ÙˆÙ…Ù‡Ø§Ø±Ø§Øª Ø§Ù„ØªÙˆØ§ØµÙ„.',
+    category: 'Ø§Ù„Ù„ØºØ§Øª',
+    streams: ['Ù„ØºØ§Øª Ø£Ø¬Ù†Ø¨ÙŠØ©', 'Ø¢Ø¯Ø§Ø¨ ÙˆÙÙ„Ø³ÙØ©', 'Ø¹Ù„ÙˆÙ… ØªØ¬Ø±ÙŠØ¨ÙŠØ©'],
     marketDemand: 7
   },
   {
     id: '7',
-    name: 'المحاسبة والمالية',
+    name: 'Ø§Ù„Ù…Ø­Ø§Ø³Ø¨Ø© ÙˆØ§Ù„Ù…Ø§Ù„ÙŠØ©',
     minGrade: 13.0,
-    jobs: ['البنوك', 'سوناطراك', 'المؤسسات الاقتصادية', 'توسياكي'],
-    description: 'إدارة الأموال، التدقيق المحاسبي، والتحليل المالي.',
-    category: 'الاقتصاد',
-    streams: ['تسيير واقتصاد', 'رياضيات', 'علوم تجريبية'],
+    jobs: ['Ø§Ù„Ø¨Ù†ÙˆÙƒ', 'Ø³ÙˆÙ†Ø§Ø·Ø±Ø§Ùƒ', 'Ø§Ù„Ù…Ø¤Ø³Ø³Ø§Øª Ø§Ù„Ø§Ù‚ØªØµØ§Ø¯ÙŠØ©', 'ØªÙˆØ³ÙŠØ§ÙƒÙŠ'],
+    description: 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ø£Ù…ÙˆØ§Ù„ØŒ Ø§Ù„ØªØ¯Ù‚ÙŠÙ‚ Ø§Ù„Ù…Ø­Ø§Ø³Ø¨ÙŠØŒ ÙˆØ§Ù„ØªØ­Ù„ÙŠÙ„ Ø§Ù„Ù…Ø§Ù„ÙŠ.',
+    category: 'Ø§Ù„Ø§Ù‚ØªØµØ§Ø¯',
+    streams: ['ØªØ³ÙŠÙŠØ± ÙˆØ§Ù‚ØªØµØ§Ø¯', 'Ø±ÙŠØ§Ø¶ÙŠØ§Øª', 'Ø¹Ù„ÙˆÙ… ØªØ¬Ø±ÙŠØ¨ÙŠØ©'],
     marketDemand: 8
   },
   {
     id: '8',
-    name: 'الهندسة المعمارية',
+    name: 'Ø§Ù„Ù‡Ù†Ø¯Ø³Ø© Ø§Ù„Ù…Ø¹Ù…Ø§Ø±ÙŠØ©',
     minGrade: 14.5,
-    jobs: ['مكاتب الدراسات', 'شركات المقاولات', 'الوزارات'],
-    description: 'تصميم المباني والمنشآت العمرانية بلمسة جمالية وتقنية.',
-    category: 'الهندسة',
-    streams: ['رياضيات', 'تقني رياضي', 'علوم تجريبية'],
+    jobs: ['Ù…ÙƒØ§ØªØ¨ Ø§Ù„Ø¯Ø±Ø§Ø³Ø§Øª', 'Ø´Ø±ÙƒØ§Øª Ø§Ù„Ù…Ù‚Ø§ÙˆÙ„Ø§Øª', 'Ø§Ù„ÙˆØ²Ø§Ø±Ø§Øª'],
+    description: 'ØªØµÙ…ÙŠÙ… Ø§Ù„Ù…Ø¨Ø§Ù†ÙŠ ÙˆØ§Ù„Ù…Ù†Ø´Ø¢Øª Ø§Ù„Ø¹Ù…Ø±Ø§Ù†ÙŠØ© Ø¨Ù„Ù…Ø³Ø© Ø¬Ù…Ø§Ù„ÙŠØ© ÙˆØªÙ‚Ù†ÙŠØ©.',
+    category: 'Ø§Ù„Ù‡Ù†Ø¯Ø³Ø©',
+    streams: ['Ø±ÙŠØ§Ø¶ÙŠØ§Øª', 'ØªÙ‚Ù†ÙŠ Ø±ÙŠØ§Ø¶ÙŠ', 'Ø¹Ù„ÙˆÙ… ØªØ¬Ø±ÙŠØ¨ÙŠØ©'],
     marketDemand: 7
   },
   {
     id: '9',
-    name: 'الذكاء الاصطناعي',
+    name: 'Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ',
     minGrade: 17.0,
-    jobs: ['مراكز البحث', 'الشركات الناشئة', 'سوناطراك'],
-    description: 'تخصص المستقبل لتطوير أنظمة ذكية تحاكي العقل البشري.',
-    category: 'التكنولوجيا',
-    streams: ['رياضيات', 'تقني رياضي'],
+    jobs: ['Ù…Ø±Ø§ÙƒØ² Ø§Ù„Ø¨Ø­Ø«', 'Ø§Ù„Ø´Ø±ÙƒØ§Øª Ø§Ù„Ù†Ø§Ø´Ø¦Ø©', 'Ø³ÙˆÙ†Ø§Ø·Ø±Ø§Ùƒ'],
+    description: 'ØªØ®ØµØµ Ø§Ù„Ù…Ø³ØªÙ‚Ø¨Ù„ Ù„ØªØ·ÙˆÙŠØ± Ø£Ù†Ø¸Ù…Ø© Ø°ÙƒÙŠØ© ØªØ­Ø§ÙƒÙŠ Ø§Ù„Ø¹Ù‚Ù„ Ø§Ù„Ø¨Ø´Ø±ÙŠ.',
+    category: 'Ø§Ù„ØªÙƒÙ†ÙˆÙ„ÙˆØ¬ÙŠØ§',
+    streams: ['Ø±ÙŠØ§Ø¶ÙŠØ§Øª', 'ØªÙ‚Ù†ÙŠ Ø±ÙŠØ§Ø¶ÙŠ'],
     marketDemand: 10
   },
   {
     id: '10',
-    name: 'العلوم الإنسانية والاجتماعية',
+    name: 'Ø§Ù„Ø¹Ù„ÙˆÙ… Ø§Ù„Ø¥Ù†Ø³Ø§Ù†ÙŠØ© ÙˆØ§Ù„Ø§Ø¬ØªÙ…Ø§Ø¹ÙŠØ©',
     minGrade: 10.0,
-    jobs: ['التعليم', 'الإعلام', 'الإدارات العمومية', 'مراكز الخدمة الاجتماعية'],
-    description: 'دراسة المجتمع، السلوك البشري، والتاريخ.',
-    category: 'العلوم الإنسانية',
-    streams: ['آداب وفلسفة', 'لغات أجنبية', 'علوم تجريبية', 'تسيير واقتصاد'],
+    jobs: ['Ø§Ù„ØªØ¹Ù„ÙŠÙ…', 'Ø§Ù„Ø¥Ø¹Ù„Ø§Ù…', 'Ø§Ù„Ø¥Ø¯Ø§Ø±Ø§Øª Ø§Ù„Ø¹Ù…ÙˆÙ…ÙŠØ©', 'Ù…Ø±Ø§ÙƒØ² Ø§Ù„Ø®Ø¯Ù…Ø© Ø§Ù„Ø§Ø¬ØªÙ…Ø§Ø¹ÙŠØ©'],
+    description: 'Ø¯Ø±Ø§Ø³Ø© Ø§Ù„Ù…Ø¬ØªÙ…Ø¹ØŒ Ø§Ù„Ø³Ù„ÙˆÙƒ Ø§Ù„Ø¨Ø´Ø±ÙŠØŒ ÙˆØ§Ù„ØªØ§Ø±ÙŠØ®.',
+    category: 'Ø§Ù„Ø¹Ù„ÙˆÙ… Ø§Ù„Ø¥Ù†Ø³Ø§Ù†ÙŠØ©',
+    streams: ['Ø¢Ø¯Ø§Ø¨ ÙˆÙÙ„Ø³ÙØ©', 'Ù„ØºØ§Øª Ø£Ø¬Ù†Ø¨ÙŠØ©', 'Ø¹Ù„ÙˆÙ… ØªØ¬Ø±ÙŠØ¨ÙŠØ©', 'ØªØ³ÙŠÙŠØ± ÙˆØ§Ù‚ØªØµØ§Ø¯'],
     marketDemand: 5
   },
   {
     id: '11',
-    name: 'العلوم الفلاحية',
+    name: 'Ø§Ù„Ø¹Ù„ÙˆÙ… Ø§Ù„ÙÙ„Ø§Ø­ÙŠØ©',
     minGrade: 10.5,
-    jobs: ['المزارع الكبرى', 'وزارة الفلاحة', 'شركات الصناعات الغذائية'],
-    description: 'دراسة التقنيات الزراعية الحديثة وتطوير الإنتاج الغذائي.',
-    category: 'العلوم الطبيعية',
-    streams: ['علوم تجريبية', 'رياضيات', 'تقني رياضي'],
+    jobs: ['Ø§Ù„Ù…Ø²Ø§Ø±Ø¹ Ø§Ù„ÙƒØ¨Ø±Ù‰', 'ÙˆØ²Ø§Ø±Ø© Ø§Ù„ÙÙ„Ø§Ø­Ø©', 'Ø´Ø±ÙƒØ§Øª Ø§Ù„ØµÙ†Ø§Ø¹Ø§Øª Ø§Ù„ØºØ°Ø§Ø¦ÙŠØ©'],
+    description: 'Ø¯Ø±Ø§Ø³Ø© Ø§Ù„ØªÙ‚Ù†ÙŠØ§Øª Ø§Ù„Ø²Ø±Ø§Ø¹ÙŠØ© Ø§Ù„Ø­Ø¯ÙŠØ«Ø© ÙˆØªØ·ÙˆÙŠØ± Ø§Ù„Ø¥Ù†ØªØ§Ø¬ Ø§Ù„ØºØ°Ø§Ø¦ÙŠ.',
+    category: 'Ø§Ù„Ø¹Ù„ÙˆÙ… Ø§Ù„Ø·Ø¨ÙŠØ¹ÙŠØ©',
+    streams: ['Ø¹Ù„ÙˆÙ… ØªØ¬Ø±ÙŠØ¨ÙŠØ©', 'Ø±ÙŠØ§Ø¶ÙŠØ§Øª', 'ØªÙ‚Ù†ÙŠ Ø±ÙŠØ§Ø¶ÙŠ'],
     marketDemand: 7
   },
   {
     id: '12',
-    name: 'الأدب العربي',
+    name: 'Ø§Ù„Ø£Ø¯Ø¨ Ø§Ù„Ø¹Ø±Ø¨ÙŠ',
     minGrade: 10.0,
-    jobs: ['التعليم', 'الصحافة', 'التدقيق اللغوي', 'دور النشر'],
-    description: 'دراسة اللغة العربية، البلاغة، والأدب العربي عبر العصور.',
-    category: 'اللغات',
-    streams: ['آداب وفلسفة', 'لغات أجنبية'],
+    jobs: ['Ø§Ù„ØªØ¹Ù„ÙŠÙ…', 'Ø§Ù„ØµØ­Ø§ÙØ©', 'Ø§Ù„ØªØ¯Ù‚ÙŠÙ‚ Ø§Ù„Ù„ØºÙˆÙŠ', 'Ø¯ÙˆØ± Ø§Ù„Ù†Ø´Ø±'],
+    description: 'Ø¯Ø±Ø§Ø³Ø© Ø§Ù„Ù„ØºØ© Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©ØŒ Ø§Ù„Ø¨Ù„Ø§ØºØ©ØŒ ÙˆØ§Ù„Ø£Ø¯Ø¨ Ø§Ù„Ø¹Ø±Ø¨ÙŠ Ø¹Ø¨Ø± Ø§Ù„Ø¹ØµÙˆØ±.',
+    category: 'Ø§Ù„Ù„ØºØ§Øª',
+    streams: ['Ø¢Ø¯Ø§Ø¨ ÙˆÙÙ„Ø³ÙØ©', 'Ù„ØºØ§Øª Ø£Ø¬Ù†Ø¨ÙŠØ©'],
     marketDemand: 4
   },
   {
     id: '13',
-    name: 'علوم الأرض والكون',
+    name: 'Ø¹Ù„ÙˆÙ… Ø§Ù„Ø£Ø±Ø¶ ÙˆØ§Ù„ÙƒÙˆÙ†',
     minGrade: 10.5,
-    jobs: ['سوناطراك', 'مراكز الأرصاد الجوية', 'شركات المناجم'],
-    description: 'دراسة الجيولوجيا، الموارد الطبيعية، والظواهر الأرضية.',
-    category: 'العلوم الطبيعية',
-    streams: ['علوم تجريبية', 'رياضيات', 'تقني رياضي'],
+    jobs: ['Ø³ÙˆÙ†Ø§Ø·Ø±Ø§Ùƒ', 'Ù…Ø±Ø§ÙƒØ² Ø§Ù„Ø£Ø±ØµØ§Ø¯ Ø§Ù„Ø¬ÙˆÙŠØ©', 'Ø´Ø±ÙƒØ§Øª Ø§Ù„Ù…Ù†Ø§Ø¬Ù…'],
+    description: 'Ø¯Ø±Ø§Ø³Ø© Ø§Ù„Ø¬ÙŠÙˆÙ„ÙˆØ¬ÙŠØ§ØŒ Ø§Ù„Ù…ÙˆØ§Ø±Ø¯ Ø§Ù„Ø·Ø¨ÙŠØ¹ÙŠØ©ØŒ ÙˆØ§Ù„Ø¸ÙˆØ§Ù‡Ø± Ø§Ù„Ø£Ø±Ø¶ÙŠØ©.',
+    category: 'Ø§Ù„Ø¹Ù„ÙˆÙ… Ø§Ù„Ø·Ø¨ÙŠØ¹ÙŠØ©',
+    streams: ['Ø¹Ù„ÙˆÙ… ØªØ¬Ø±ÙŠØ¨ÙŠØ©', 'Ø±ÙŠØ§Ø¶ÙŠØ§Øª', 'ØªÙ‚Ù†ÙŠ Ø±ÙŠØ§Ø¶ÙŠ'],
     marketDemand: 6
   },
   {
     id: '14',
-    name: 'التربية البدنية والرياضية (STAPS)',
+    name: 'Ø§Ù„ØªØ±Ø¨ÙŠØ© Ø§Ù„Ø¨Ø¯Ù†ÙŠØ© ÙˆØ§Ù„Ø±ÙŠØ§Ø¶ÙŠØ© (STAPS)',
     minGrade: 12.0,
-    jobs: ['التعليم', 'الأندية الرياضية', 'التدريب الشخصي'],
-    description: 'دراسة علوم الرياضة، التدريب، والتربية البدنية.',
-    category: 'العلوم الإنسانية',
-    streams: ['جميع الشعب'],
+    jobs: ['Ø§Ù„ØªØ¹Ù„ÙŠÙ…', 'Ø§Ù„Ø£Ù†Ø¯ÙŠØ© Ø§Ù„Ø±ÙŠØ§Ø¶ÙŠØ©', 'Ø§Ù„ØªØ¯Ø±ÙŠØ¨ Ø§Ù„Ø´Ø®ØµÙŠ'],
+    description: 'Ø¯Ø±Ø§Ø³Ø© Ø¹Ù„ÙˆÙ… Ø§Ù„Ø±ÙŠØ§Ø¶Ø©ØŒ Ø§Ù„ØªØ¯Ø±ÙŠØ¨ØŒ ÙˆØ§Ù„ØªØ±Ø¨ÙŠØ© Ø§Ù„Ø¨Ø¯Ù†ÙŠØ©.',
+    category: 'Ø§Ù„Ø¹Ù„ÙˆÙ… Ø§Ù„Ø¥Ù†Ø³Ø§Ù†ÙŠØ©',
+    streams: ['Ø¬Ù…ÙŠØ¹ Ø§Ù„Ø´Ø¹Ø¨'],
     marketDemand: 5
   },
   {
     id: '15',
-    name: 'علوم المادة',
+    name: 'Ø¹Ù„ÙˆÙ… Ø§Ù„Ù…Ø§Ø¯Ø©',
     minGrade: 11.0,
-    jobs: ['المختبرات الكيميائية', 'الصناعات التحويلية', 'التعليم'],
-    description: 'دراسة الفيزياء والكيمياء وخصائص المادة.',
-    category: 'العلوم الأساسية',
-    streams: ['علوم تجريبية', 'رياضيات', 'تقني رياضي'],
+    jobs: ['Ø§Ù„Ù…Ø®ØªØ¨Ø±Ø§Øª Ø§Ù„ÙƒÙŠÙ…ÙŠØ§Ø¦ÙŠØ©', 'Ø§Ù„ØµÙ†Ø§Ø¹Ø§Øª Ø§Ù„ØªØ­ÙˆÙŠÙ„ÙŠØ©', 'Ø§Ù„ØªØ¹Ù„ÙŠÙ…'],
+    description: 'Ø¯Ø±Ø§Ø³Ø© Ø§Ù„ÙÙŠØ²ÙŠØ§Ø¡ ÙˆØ§Ù„ÙƒÙŠÙ…ÙŠØ§Ø¡ ÙˆØ®ØµØ§Ø¦Øµ Ø§Ù„Ù…Ø§Ø¯Ø©.',
+    category: 'Ø§Ù„Ø¹Ù„ÙˆÙ… Ø§Ù„Ø£Ø³Ø§Ø³ÙŠØ©',
+    streams: ['Ø¹Ù„ÙˆÙ… ØªØ¬Ø±ÙŠØ¨ÙŠØ©', 'Ø±ÙŠØ§Ø¶ÙŠØ§Øª', 'ØªÙ‚Ù†ÙŠ Ø±ÙŠØ§Ø¶ÙŠ'],
     marketDemand: 6
   }
 ];
@@ -190,8 +190,8 @@ export default function App() {
   const [view, setView] = useState<'home' | 'favorites' | 'promo'>('home');
   const [searchQuery, setSearchQuery] = useState('');
   const [userGrade, setUserGrade] = useState<string>('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('الكل');
-  const [selectedStream, setSelectedStream] = useState<string>('الكل');
+  const [selectedCategory, setSelectedCategory] = useState<string>('Ø§Ù„ÙƒÙ„');
+  const [selectedStream, setSelectedStream] = useState<string>('Ø§Ù„ÙƒÙ„');
   const [showAllRegardlessOfGrade, setShowAllRegardlessOfGrade] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [showAdvisor, setShowAdvisor] = useState(false);
@@ -199,7 +199,7 @@ export default function App() {
   const [showAIChatModal, setShowAIChatModal] = useState(false);
   const [aiChatEduLevel, setAiChatEduLevel] = useState<string | undefined>(undefined);
 
-  // ميزات التكبير والمقارنة الجديدة
+  // Ù…ÙŠØ²Ø§Øª Ø§Ù„ØªÙƒØ¨ÙŠØ± ÙˆØ§Ù„Ù…Ù‚Ø§Ø±Ù†Ø© Ø§Ù„Ø¬Ø¯ÙŠØ¯Ø©
   const [zoomLevel, setZoomLevel] = useState<'normal' | 'large' | 'xlarge'>('normal');
   const [zoomedSpec, setZoomedSpec] = useState<Specialization | null>(null);
   const [comparisonList, setComparisonList] = useState<string[]>([]);
@@ -219,35 +219,35 @@ export default function App() {
 
   const getUniversitiesForCategory = (category: string) => {
     switch(category) {
-      case 'العلوم الطبية':
-        return ['جامعة الجزائر 1 (بن يوسف بن خدة)', 'جامعة وهران 1 (أحمد بن بلة)', 'جامعة قسنطينة 3', 'جامعة عنابة', 'جامعة سطيف 1', 'جامعة ورقلة'];
-      case 'التكنولوجيا':
-        return ['المدرسة الوطنية العليا للذكاء الاصطناعي (سيدي عبد الله)', 'المدرسة الوطنية العليا للإعلام الآلي (ESI)', 'جامعة هواري بومدين (USTHB)', 'جامعة قسنطينة 2'];
-      case 'الهندسة':
-        return ['المدرسة الوطنية متعددة التقنيات (Polytechnique)', 'جامعة بومرداس (M\'Hamed Bougara)', 'جامعة وهران للعلوم والتكنولوجيا (USTO)'];
-      case 'الاقتصاد':
-        return ['المدرسة العليا للتجارة (ESC القليعة)', 'المدرسة الوطنية العليا للمصرفية', 'جامعة الجزائر 3 (دالي إبراهيم)', 'جامعة سطيف 1'];
-      case 'اللغات':
-        return ['جامعة الجزائر 2 (بوزريعة)', 'جامعة وهران 2', 'جامعة قسنطينة 1', 'جامعة باتنة 1'];
+      case 'Ø§Ù„Ø¹Ù„ÙˆÙ… Ø§Ù„Ø·Ø¨ÙŠØ©':
+        return ['Ø¬Ø§Ù…Ø¹Ø© Ø§Ù„Ø¬Ø²Ø§Ø¦Ø± 1 (Ø¨Ù† ÙŠÙˆØ³Ù Ø¨Ù† Ø®Ø¯Ø©)', 'Ø¬Ø§Ù…Ø¹Ø© ÙˆÙ‡Ø±Ø§Ù† 1 (Ø£Ø­Ù…Ø¯ Ø¨Ù† Ø¨Ù„Ø©)', 'Ø¬Ø§Ù…Ø¹Ø© Ù‚Ø³Ù†Ø·ÙŠÙ†Ø© 3', 'Ø¬Ø§Ù…Ø¹Ø© Ø¹Ù†Ø§Ø¨Ø©', 'Ø¬Ø§Ù…Ø¹Ø© Ø³Ø·ÙŠÙ 1', 'Ø¬Ø§Ù…Ø¹Ø© ÙˆØ±Ù‚Ù„Ø©'];
+      case 'Ø§Ù„ØªÙƒÙ†ÙˆÙ„ÙˆØ¬ÙŠØ§':
+        return ['Ø§Ù„Ù…Ø¯Ø±Ø³Ø© Ø§Ù„ÙˆØ·Ù†ÙŠØ© Ø§Ù„Ø¹Ù„ÙŠØ§ Ù„Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ (Ø³ÙŠØ¯ÙŠ Ø¹Ø¨Ø¯ Ø§Ù„Ù„Ù‡)', 'Ø§Ù„Ù…Ø¯Ø±Ø³Ø© Ø§Ù„ÙˆØ·Ù†ÙŠØ© Ø§Ù„Ø¹Ù„ÙŠØ§ Ù„Ù„Ø¥Ø¹Ù„Ø§Ù… Ø§Ù„Ø¢Ù„ÙŠ (ESI)', 'Ø¬Ø§Ù…Ø¹Ø© Ù‡ÙˆØ§Ø±ÙŠ Ø¨ÙˆÙ…Ø¯ÙŠÙ† (USTHB)', 'Ø¬Ø§Ù…Ø¹Ø© Ù‚Ø³Ù†Ø·ÙŠÙ†Ø© 2'];
+      case 'Ø§Ù„Ù‡Ù†Ø¯Ø³Ø©':
+        return ['Ø§Ù„Ù…Ø¯Ø±Ø³Ø© Ø§Ù„ÙˆØ·Ù†ÙŠØ© Ù…ØªØ¹Ø¯Ø¯Ø© Ø§Ù„ØªÙ‚Ù†ÙŠØ§Øª (Polytechnique)', 'Ø¬Ø§Ù…Ø¹Ø© Ø¨ÙˆÙ…Ø±Ø¯Ø§Ø³ (M\'Hamed Bougara)', 'Ø¬Ø§Ù…Ø¹Ø© ÙˆÙ‡Ø±Ø§Ù† Ù„Ù„Ø¹Ù„ÙˆÙ… ÙˆØ§Ù„ØªÙƒÙ†ÙˆÙ„ÙˆØ¬ÙŠØ§ (USTO)'];
+      case 'Ø§Ù„Ø§Ù‚ØªØµØ§Ø¯':
+        return ['Ø§Ù„Ù…Ø¯Ø±Ø³Ø© Ø§Ù„Ø¹Ù„ÙŠØ§ Ù„Ù„ØªØ¬Ø§Ø±Ø© (ESC Ø§Ù„Ù‚Ù„ÙŠØ¹Ø©)', 'Ø§Ù„Ù…Ø¯Ø±Ø³Ø© Ø§Ù„ÙˆØ·Ù†ÙŠØ© Ø§Ù„Ø¹Ù„ÙŠØ§ Ù„Ù„Ù…ØµØ±ÙÙŠØ©', 'Ø¬Ø§Ù…Ø¹Ø© Ø§Ù„Ø¬Ø²Ø§Ø¦Ø± 3 (Ø¯Ø§Ù„ÙŠ Ø¥Ø¨Ø±Ø§Ù‡ÙŠÙ…)', 'Ø¬Ø§Ù…Ø¹Ø© Ø³Ø·ÙŠÙ 1'];
+      case 'Ø§Ù„Ù„ØºØ§Øª':
+        return ['Ø¬Ø§Ù…Ø¹Ø© Ø§Ù„Ø¬Ø²Ø§Ø¦Ø± 2 (Ø¨ÙˆØ²Ø±ÙŠØ¹Ø©)', 'Ø¬Ø§Ù…Ø¹Ø© ÙˆÙ‡Ø±Ø§Ù† 2', 'Ø¬Ø§Ù…Ø¹Ø© Ù‚Ø³Ù†Ø·ÙŠÙ†Ø© 1', 'Ø¬Ø§Ù…Ø¹Ø© Ø¨Ø§ØªÙ†Ø© 1'];
       default:
-        return ['جامعة الجزائر العاصمة', 'جامعة وهران', 'جامعة قسنطينة', 'جامعة سطيف', 'جامعة عنابة', 'جامعة تلمسان', 'جامعة ورقلة'];
+        return ['Ø¬Ø§Ù…Ø¹Ø© Ø§Ù„Ø¬Ø²Ø§Ø¦Ø± Ø§Ù„Ø¹Ø§ØµÙ…Ø©', 'Ø¬Ø§Ù…Ø¹Ø© ÙˆÙ‡Ø±Ø§Ù†', 'Ø¬Ø§Ù…Ø¹Ø© Ù‚Ø³Ù†Ø·ÙŠÙ†Ø©', 'Ø¬Ø§Ù…Ø¹Ø© Ø³Ø·ÙŠÙ', 'Ø¬Ø§Ù…Ø¹Ø© Ø¹Ù†Ø§Ø¨Ø©', 'Ø¬Ø§Ù…Ø¹Ø© ØªÙ„Ù…Ø³Ø§Ù†', 'Ø¬Ø§Ù…Ø¹Ø© ÙˆØ±Ù‚Ù„Ø©'];
     }
   };
 
-  const categories = ['الكل', ...new Set(INITIAL_DATA.map(s => s.category))];
-  const streams = ['الكل', 'علوم تجريبية', 'رياضيات', 'تقني رياضي', 'آداب وفلسفة', 'لغات أجنبية', 'تسيير واقتصاد'];
+  const categories = ['Ø§Ù„ÙƒÙ„', ...new Set(INITIAL_DATA.map(s => s.category))];
+  const streams = ['Ø§Ù„ÙƒÙ„', 'Ø¹Ù„ÙˆÙ… ØªØ¬Ø±ÙŠØ¨ÙŠØ©', 'Ø±ÙŠØ§Ø¶ÙŠØ§Øª', 'ØªÙ‚Ù†ÙŠ Ø±ÙŠØ§Ø¶ÙŠ', 'Ø¢Ø¯Ø§Ø¨ ÙˆÙÙ„Ø³ÙØ©', 'Ù„ØºØ§Øª Ø£Ø¬Ù†Ø¨ÙŠØ©', 'ØªØ³ÙŠÙŠØ± ÙˆØ§Ù‚ØªØµØ§Ø¯'];
 
-  // تحسين تطبيع النص العربي للبحث بشكل أكثر شمولاً
+  // ØªØ­Ø³ÙŠÙ† ØªØ·Ø¨ÙŠØ¹ Ø§Ù„Ù†Øµ Ø§Ù„Ø¹Ø±Ø¨ÙŠ Ù„Ù„Ø¨Ø­Ø« Ø¨Ø´ÙƒÙ„ Ø£ÙƒØ«Ø± Ø´Ù…ÙˆÙ„Ø§Ù‹
   const normalizeArabic = (text: string | undefined | null) => {
     if (!text) return '';
     return text
       .toString()
-      .replace(/[أإآ]/g, 'ا')
-      .replace(/ة/g, 'ه')
-      .replace(/ى/g, 'ي')
-      .replace(/ـ/g, '') // إزالة التطويل
-      .replace(/[\u064B-\u0652]/g, '') // إزالة التشكيل (الفتحة، الضمة، إلخ)
-      .replace(/\s+/g, ' ') // توحيد المسافات
+      .replace(/[Ø£Ø¥Ø¢]/g, 'Ø§')
+      .replace(/Ø©/g, 'Ù‡')
+      .replace(/Ù‰/g, 'ÙŠ')
+      .replace(/Ù€/g, '') // Ø¥Ø²Ø§Ù„Ø© Ø§Ù„ØªØ·ÙˆÙŠÙ„
+      .replace(/[\u064B-\u0652]/g, '') // Ø¥Ø²Ø§Ù„Ø© Ø§Ù„ØªØ´ÙƒÙŠÙ„ (Ø§Ù„ÙØªØ­Ø©ØŒ Ø§Ù„Ø¶Ù…Ø©ØŒ Ø¥Ù„Ø®)
+      .replace(/\s+/g, ' ') // ØªÙˆØ­ÙŠØ¯ Ø§Ù„Ù…Ø³Ø§ÙØ§Øª
       .trim()
       .toLowerCase();
   };
@@ -266,7 +266,7 @@ export default function App() {
 
       return baseData
         .filter(spec => {
-          // 1. شرط البحث النصي
+          // 1. Ø´Ø±Ø· Ø§Ù„Ø¨Ø­Ø« Ø§Ù„Ù†ØµÙŠ
           const specName = normalizeArabic(spec.name);
           const specJobs = spec.jobs.map(j => normalizeArabic(j)).join(' ');
           const specDesc = normalizeArabic(spec.description);
@@ -275,14 +275,14 @@ export default function App() {
           const fullContent = `${specName} ${specJobs} ${specDesc} ${specCat}`;
           const matchesSearch = queryWords.length === 0 || queryWords.every(word => fullContent.includes(word));
           
-          // 2. شرط المعدل
+          // 2. Ø´Ø±Ø· Ø§Ù„Ù…Ø¹Ø¯Ù„
           const matchesGrade = showAllRegardlessOfGrade || normalizedGrade === '' || normalizedGrade >= spec.minGrade;
           
-          // 3. شرط التصنيف
-          const matchesCategory = selectedCategory === 'الكل' || spec.category === selectedCategory;
+          // 3. Ø´Ø±Ø· Ø§Ù„ØªØµÙ†ÙŠÙ
+          const matchesCategory = selectedCategory === 'Ø§Ù„ÙƒÙ„' || spec.category === selectedCategory;
 
-          // 4. شرط الشعبة
-          const matchesStream = selectedStream === 'الكل' || spec.streams.includes(selectedStream);
+          // 4. Ø´Ø±Ø· Ø§Ù„Ø´Ø¹Ø¨Ø©
+          const matchesStream = selectedStream === 'Ø§Ù„ÙƒÙ„' || spec.streams.includes(selectedStream);
           
           return matchesSearch && matchesGrade && matchesCategory && matchesStream;
         })
@@ -294,7 +294,7 @@ export default function App() {
   }, [view, favorites, searchQuery, userGrade, selectedCategory, selectedStream, showAllRegardlessOfGrade]);
 
   const handleGradeChange = (val: string) => {
-    // السماح بالأرقام، النقطة، والفاصلة فقط
+    // Ø§Ù„Ø³Ù…Ø§Ø­ Ø¨Ø§Ù„Ø£Ø±Ù‚Ø§Ù…ØŒ Ø§Ù„Ù†Ù‚Ø·Ø©ØŒ ÙˆØ§Ù„ÙØ§ØµÙ„Ø© ÙÙ‚Ø·
     const sanitized = val.replace(/[^0-9.,]/g, '');
     setUserGrade(sanitized);
   };
@@ -311,7 +311,7 @@ export default function App() {
     return baseData.filter(spec => {
       const fullContent = `${normalizeArabic(spec.name)} ${spec.jobs.map(j => normalizeArabic(j)).join(' ')} ${normalizeArabic(spec.description)} ${normalizeArabic(spec.category)}`;
       const matchesSearch = queryWords.length === 0 || queryWords.every(word => fullContent.includes(word));
-      const matchesCategory = selectedCategory === 'الكل' || spec.category === selectedCategory;
+      const matchesCategory = selectedCategory === 'Ø§Ù„ÙƒÙ„' || spec.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
   }, [view, favorites, searchQuery, selectedCategory]);
@@ -327,7 +327,7 @@ export default function App() {
 
     return baseData.filter(spec => {
       const matchesGrade = showAllRegardlessOfGrade || normalizedGrade === '' || normalizedGrade >= spec.minGrade;
-      const matchesCategory = selectedCategory === 'الكل' || spec.category === selectedCategory;
+      const matchesCategory = selectedCategory === 'Ø§Ù„ÙƒÙ„' || spec.category === selectedCategory;
       return matchesGrade && matchesCategory;
     });
   }, [view, favorites, userGrade, selectedCategory, showAllRegardlessOfGrade]);
@@ -348,17 +348,17 @@ export default function App() {
   };
 
   const getAdvisorAdvice = () => {
-    if (userGrade === '') return "يا خويا/ختي، دخل المعدل تاعك باش نقدر نعاونك!";
+    if (userGrade === '') return "ÙŠØ§ Ø®ÙˆÙŠØ§/Ø®ØªÙŠØŒ Ø¯Ø®Ù„ Ø§Ù„Ù…Ø¹Ø¯Ù„ ØªØ§Ø¹Ùƒ Ø¨Ø§Ø´ Ù†Ù‚Ø¯Ø± Ù†Ø¹Ø§ÙˆÙ†Ùƒ!";
     const gradeValue = userGrade.replace(',', '.');
     const grade = Number(gradeValue);
-    if (isNaN(grade)) return "يا خويا/ختي، دخل معدل صحيح (مثال: 14.50)";
+    if (isNaN(grade)) return "ÙŠØ§ Ø®ÙˆÙŠØ§/Ø®ØªÙŠØŒ Ø¯Ø®Ù„ Ù…Ø¹Ø¯Ù„ ØµØ­ÙŠØ­ (Ù…Ø«Ø§Ù„: 14.50)";
 
-    // العثور على أفضل تخصص من حيث الطلب في سوق العمل والمناسب للمعدل
+    // Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ø£ÙØ¶Ù„ ØªØ®ØµØµ Ù…Ù† Ø­ÙŠØ« Ø§Ù„Ø·Ù„Ø¨ ÙÙŠ Ø³ÙˆÙ‚ Ø§Ù„Ø¹Ù…Ù„ ÙˆØ§Ù„Ù…Ù†Ø§Ø³Ø¨ Ù„Ù„Ù…Ø¹Ø¯Ù„
     const eligibleSpecs = INITIAL_DATA.filter(s => grade >= s.minGrade)
       .sort((a, b) => b.marketDemand - a.marketDemand);
 
     const eligibleInCat = eligibleSpecs.filter(s => 
-      selectedCategory === 'الكل' || s.category === selectedCategory
+      selectedCategory === 'Ø§Ù„ÙƒÙ„' || s.category === selectedCategory
     );
 
     const topSpec = eligibleInCat[0] || eligibleSpecs[0];
@@ -366,29 +366,29 @@ export default function App() {
     let advice = "";
     
     if (grade >= 16) {
-      advice = `تبارك الله! بمعدل ${userGrade} عندك خيارات قوية بزاف. `;
+      advice = `ØªØ¨Ø§Ø±Ùƒ Ø§Ù„Ù„Ù‡! Ø¨Ù…Ø¹Ø¯Ù„ ${userGrade} Ø¹Ù†Ø¯Ùƒ Ø®ÙŠØ§Ø±Ø§Øª Ù‚ÙˆÙŠØ© Ø¨Ø²Ø§Ù. `;
     } else if (grade >= 14) {
-      advice = `معدل ${userGrade} بزاف هايل، يفتحلك بيبان لتخصصات ممتازة. `;
+      advice = `Ù…Ø¹Ø¯Ù„ ${userGrade} Ø¨Ø²Ø§Ù Ù‡Ø§ÙŠÙ„ØŒ ÙŠÙØªØ­Ù„Ùƒ Ø¨ÙŠØ¨Ø§Ù† Ù„ØªØ®ØµØµØ§Øª Ù…Ù…ØªØ§Ø²Ø©. `;
     } else if (grade >= 12) {
-      advice = `معدل ${userGrade} مليح، تقدر دير بيه تخصصات عندها مستقبل واعد. `;
+      advice = `Ù…Ø¹Ø¯Ù„ ${userGrade} Ù…Ù„ÙŠØ­ØŒ ØªÙ‚Ø¯Ø± Ø¯ÙŠØ± Ø¨ÙŠÙ‡ ØªØ®ØµØµØ§Øª Ø¹Ù†Ø¯Ù‡Ø§ Ù…Ø³ØªÙ‚Ø¨Ù„ ÙˆØ§Ø¹Ø¯. `;
     } else if (grade >= 10) {
-      advice = `مبروك عليك الباك! بمعدل ${userGrade} كاين تخصصات ملاح تقدر تنجح فيهم وتطور روحك. `;
+      advice = `Ù…Ø¨Ø±ÙˆÙƒ Ø¹Ù„ÙŠÙƒ Ø§Ù„Ø¨Ø§Ùƒ! Ø¨Ù…Ø¹Ø¯Ù„ ${userGrade} ÙƒØ§ÙŠÙ† ØªØ®ØµØµØ§Øª Ù…Ù„Ø§Ø­ ØªÙ‚Ø¯Ø± ØªÙ†Ø¬Ø­ ÙÙŠÙ‡Ù… ÙˆØªØ·ÙˆØ± Ø±ÙˆØ­Ùƒ. `;
     } else {
-      advice = "ما تفشلش، الصح في الإرادة والخدمة، كاين تخصصات بزاف تقدر تبدع فيهم. ";
+      advice = "Ù…Ø§ ØªÙØ´Ù„Ø´ØŒ Ø§Ù„ØµØ­ ÙÙŠ Ø§Ù„Ø¥Ø±Ø§Ø¯Ø© ÙˆØ§Ù„Ø®Ø¯Ù…Ø©ØŒ ÙƒØ§ÙŠÙ† ØªØ®ØµØµØ§Øª Ø¨Ø²Ø§Ù ØªÙ‚Ø¯Ø± ØªØ¨Ø¯Ø¹ ÙÙŠÙ‡Ù…. ";
     }
 
     if (topSpec) {
-      if (selectedCategory !== 'الكل' && topSpec.category === selectedCategory) {
-        advice += `بما أنك مهتم بـ ${selectedCategory}، ننصحك بـ "${topSpec.name}" راهو مطلوب بزاف (الطلب: ${topSpec.marketDemand}/10). `;
+      if (selectedCategory !== 'Ø§Ù„ÙƒÙ„' && topSpec.category === selectedCategory) {
+        advice += `Ø¨Ù…Ø§ Ø£Ù†Ùƒ Ù…Ù‡ØªÙ… Ø¨Ù€ ${selectedCategory}ØŒ Ù†Ù†ØµØ­Ùƒ Ø¨Ù€ "${topSpec.name}" Ø±Ø§Ù‡Ùˆ Ù…Ø·Ù„ÙˆØ¨ Ø¨Ø²Ø§Ù (Ø§Ù„Ø·Ù„Ø¨: ${topSpec.marketDemand}/10). `;
       } else {
-        advice += `ننصحك تشوف "${topSpec.name}"، راهو تخصص مطلوب بزاف في سوق العمل حالياً. `;
+        advice += `Ù†Ù†ØµØ­Ùƒ ØªØ´ÙˆÙ "${topSpec.name}"ØŒ Ø±Ø§Ù‡Ùˆ ØªØ®ØµØµ Ù…Ø·Ù„ÙˆØ¨ Ø¨Ø²Ø§Ù ÙÙŠ Ø³ÙˆÙ‚ Ø§Ù„Ø¹Ù…Ù„ Ø­Ø§Ù„ÙŠØ§Ù‹. `;
       }
     }
 
     if (favorites.length > 0) {
-      advice += `راك حفظت ${favorites.length} تخصصات في المفضلة، ركز عليهم وشوف اللي يخرج على طموحك!`;
+      advice += `Ø±Ø§Ùƒ Ø­ÙØ¸Øª ${favorites.length} ØªØ®ØµØµØ§Øª ÙÙŠ Ø§Ù„Ù…ÙØ¶Ù„Ø©ØŒ Ø±ÙƒØ² Ø¹Ù„ÙŠÙ‡Ù… ÙˆØ´ÙˆÙ Ø§Ù„Ù„ÙŠ ÙŠØ®Ø±Ø¬ Ø¹Ù„Ù‰ Ø·Ù…ÙˆØ­Ùƒ!`;
     } else {
-      advice += "ما تنساش تضغط على القلب ❤️ باش تحفظ التخصصات اللي عجبوك.";
+      advice += "Ù…Ø§ ØªÙ†Ø³Ø§Ø´ ØªØ¶ØºØ· Ø¹Ù„Ù‰ Ø§Ù„Ù‚Ù„Ø¨ â¤ï¸ Ø¨Ø§Ø´ ØªØ­ÙØ¸ Ø§Ù„ØªØ®ØµØµØ§Øª Ø§Ù„Ù„ÙŠ Ø¹Ø¬Ø¨ÙˆÙƒ.";
     }
 
     return advice;
@@ -410,7 +410,7 @@ export default function App() {
               }`}
             >
               <GraduationCap className="w-5 h-5" />
-              التوجيه الجامعي 🎓
+              Ø§Ù„ØªÙˆØ¬ÙŠÙ‡ Ø§Ù„Ø¬Ø§Ù…Ø¹ÙŠ ðŸŽ“
             </button>
 
             <button
@@ -422,7 +422,7 @@ export default function App() {
               }`}
             >
               <Wrench className="w-5 h-5" />
-              التوجيه المهني والمهارات 🛠️
+              Ø§Ù„ØªÙˆØ¬ÙŠÙ‡ Ø§Ù„Ù…Ù‡Ù†ÙŠ ÙˆØ§Ù„Ù…Ù‡Ø§Ø±Ø§Øª ðŸ› ï¸
             </button>
           </div>
         </div>
@@ -435,65 +435,5 @@ export default function App() {
                 animate={{ opacity: 1, x: 0 }}
                 className="text-center md:text-right"
               >
-                <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
-                  <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
-                    <GraduationCap className="w-10 h-10 text-white" />
-                  </div>
-                  <h1 className="text-3xl font-black tracking-tight">DzTech Mind</h1>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-4">Dz-Orientation</h2>
-                <p className="text-xl text-green-100 max-w-xl">
-                  دليلك الذكي لاختيار التخصص الجامعي في الجزائر (توقعات 2026) بناءً على معدلك وسوق العمل.
-                </p>
-                <p className="text-sm text-green-200/70 mt-2 italic">
-                  * ملاحظة: المعدلات هي توقعات أولية لسنة 2026 بناءً على توجهات السنوات السابقة.
-                </p>
-              </motion.div>
-              
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-white/10 p-6 rounded-3xl backdrop-blur-md border border-white/20"
-              >
-                <div className="flex items-center gap-3 mb-4 text-green-100">
-                  <Sparkles className="w-6 h-6" />
-                  <span className="font-bold">المستشار الذكي</span>
-                </div>
-                <p className="text-lg leading-relaxed mb-4 min-h-[80px] max-w-[300px]">
-                  "{getAdvisorAdvice()}"
-                </p>
-                <button 
-                  onClick={() => setShowAIChatModal(true)}
-                  className="w-full py-2.5 bg-gradient-to-r from-emerald-400 to-teal-300 text-slate-950 rounded-xl font-black hover:brightness-110 transition-all flex items-center justify-center gap-2 shadow-lg"
-                >
-                  <Bot className="w-5 h-5 text-slate-950" />
-                  تحدث مع مساعد DzTech الذكي 🤖
-                </button>
-              </motion.div>
-            </div>
-
-            {/* Navigation Tabs for University Subviews */}
-            <div className="max-w-6xl mx-auto px-4 mt-8 flex justify-center">
-              <div className="bg-white/10 backdrop-blur-md p-1.5 rounded-2xl flex flex-wrap justify-center gap-1.5 sm:gap-2 border border-white/20">
-                <button
-                  onClick={() => setView('home')}
-                  className={`px-3 sm:px-8 py-2.5 sm:py-3 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center gap-1.5 sm:gap-2 ${
-                    view === 'home' 
-                      ? 'bg-white text-[#004d00] shadow-lg' 
-                      : 'text-white hover:bg-white/10'
-                  }`}
-                >
-                  <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5" />
-                  الرئيسية
-                </button>
-                <button>
-                  onClick={() => setView('favorites')}
-                  className={`px-3 sm:px-8 py-2.5 sm:py-3 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center gap-1.5 sm:gap-2 relative ${
-                    view === 'favorites' 
-                      ? 'bg-white text-[#004d00] shadow-lg' 
-                      : 'text-white hover:bg-white/10'
-                  }`}
-                >
-                  <Heart className={`w-4 h-4 sm:w-5 sm:h-5 ${view === 'favorites' ? 'fill-current' : ''}`} />
-                  المفضلة
+                <div className="flex items-center justif
                 
