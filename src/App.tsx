@@ -179,7 +179,8 @@ export const VOCATIONAL_SKILLS: VocationalSkill[] = [
         description: 'تعلم منشار زوايا 45 درجة وتجميع الزوايا بـ Équerre de montage.',
         practicalTask: 'تجميع إطار نافذة ألمنيوم منزلقة مع سد الفواصل بجوان EPDM.',
         skillsAcquired: ['قص البروفيلات بدقة زوايا', 'تثبيت الإكير والمكبس', 'تركيب العجلات المنزلقة Roulettes']
-      },
+      }
+      
       {
         step: 2,
         title: 'المرحلة 2: تثبيت الزجاج والستائر المتحركة',
