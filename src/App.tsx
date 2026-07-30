@@ -236,7 +236,7 @@ export const VOCATIONAL_SKILLS: VocationalSkill[] = [
         description: 'تطبيق الطبقة الأولى والطبقة الناعمة للتلبيس ومسح السطح بالمسطرة.',
         practicalTask: 'تلبيس جدار كامل بالأسمنت والملس بالمسطرة الألومنيوم.',
         skillsAcquired: ['تطبيق المرشة (Gobetis)', 'التلبيس بالمسطرة الألومنيوم', 'التنعيم بـ Taloche']
-      },
+      }
       {
         
                      
