@@ -244,8 +244,8 @@ export const VOCATIONAL_SKILLS: VocationalSkill[] = [
         description: 'تركيب القوالب الخشبية للأعمدة والأسقف وصب الخرسانة المسلحة.',
         practicalTask: 'صب عمود خرساني وقالب أساسي مع التسليح وتفريغ الهواء.',
         skillsAcquired: ['تركيب Coff  skillsAcquired: ['صب', 'Coffrage', 'تركيب']
-  }
-];
+  
+
 
                      
        }
