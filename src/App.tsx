@@ -238,18 +238,10 @@ export const VOCATIONAL_SKILLS: VocationalSkill[] = [
         skillsAcquired: ['تطبيق المرشة (Gobetis)', 'التلبيس بالمسطرة الألومنيوم', 'التنعيم بـ Taloche']
       },
       {
-        step: 3,
-        title: 'المرحلة 3: القوالب والخرسانة المسلحة',
-        duration: '6 - 12 شهراً',
-        description: 'تركيب القوالب الخشبية للأعمدة والأسقف وصب الخرسانة المسلحة.',
-        practicalTask: 'صب عمود خرساني وقالب أساسي مع التسليح وتفريغ الهواء.',
-        skillsAcquired: ['تركيب Coff  skillsAcquired: ['صب', 'Coffrage', 'تركيب']
-  
-
-
+        
                      
-       }
-];
+       
+
  
   
   
