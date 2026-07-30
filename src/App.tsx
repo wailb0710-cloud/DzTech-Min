@@ -237,8 +237,17 @@ export const VOCATIONAL_SKILLS: VocationalSkill[] = [
         practicalTask: 'تلبيس جدار كامل بالأسمنت والملس بالمسطرة الألومنيوم.',
         skillsAcquired: ['تطبيق المرشة (Gobetis)', 'التلبيس بالمسطرة الألومنيوم', 'التنعيم بـ Taloche']
       }
-      {
-        
+      
+     {
+    step: 3,
+    title: 'المرحلة 3: القوالب والخرسانة المسلحة',
+    duration: '6 أشهر',
+    description: 'الأساطح والأسقف وصب الخرسانة المسلحة',
+    practicalTask: 'الأساسي مع التسليح وتفريغ الهواء',
+    skillsAcquired: ['صب', 'Coffrage', 'تركيب']
+  }
+]
+     
                      
        
 
