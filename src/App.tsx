@@ -245,8 +245,8 @@ export const VOCATIONAL_SKILLS: VocationalSkill[] = [
     description: 'الأساطح والأسقف وصب الخرسانة المسلحة',
     practicalTask: 'الأساسي مع التسليح وتفريغ الهواء',
     skillsAcquired: ['صب', 'Coffrage', 'تركيب']
-  }
-]
+ " }"
+"]"
      
                      
        
