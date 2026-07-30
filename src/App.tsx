@@ -228,7 +228,7 @@ export const VOCATIONAL_SKILLS: VocationalSkill[] = [
         description: 'خلط الملاط بنسب صحيحة وبناء جدران مستقيمة بالميزان والخيط.',
         practicalTask: 'بناء جدار آجر طوله 3 أمتار بميزان شاقولي متقن ودون ميلان.',
         skillsAcquired: ['استخدام Truelle & Fil à plomb', 'خلط الملاط الميداني', 'ترتيب الآجر والباربان']
-      },
+      }
       {
         step: 2,
         title: 'المرحلة 2: اللياسة والتلبيس (Crépissage)',
@@ -239,14 +239,7 @@ export const VOCATIONAL_SKILLS: VocationalSkill[] = [
       }
       
      {
-    step: 3,
-    title: 'المرحلة 3: القوالب والخرسانة المسلحة',
-    duration: '6 أشهر',
-    description: 'الأساطح والأسقف وصب الخرسانة المسلحة',
-    practicalTask: 'الأساسي مع التسليح وتفريغ الهواء',
-    skillsAcquired: ['صب', 'Coffrage', 'تركيب']
- " }"
-"]"
+"
      
                      
        
