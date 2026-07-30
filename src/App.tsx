@@ -240,7 +240,7 @@ export const VOCATIONAL_SKILLS: VocationalSkill[] = [
       
      {
 "
-     
+    
                      
        
 
