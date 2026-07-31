@@ -1,5 +1,6 @@
 {
   "name": "Dz-Orientation (DzTech Mind)",
-  "description": "تطبيق ويب متكامل لمساعدة الطلاب الجزائريين في اختيار تخصصاتهم الجامعية بناءً على معدل البكالوريا وسوق العمل.",
-  "requestFramePermissions": []
+  "description": "تطبيق ويب متكامل لمساعدة الطلاب الجزائريين في اختيار تخصصاتهم الجامعية والتكوين المهني بناءً على المعدل والمستوى والتوجيه الذكي.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
