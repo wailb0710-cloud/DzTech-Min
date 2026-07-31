@@ -427,13 +427,14 @@ export default function App() {
           </div>
         </div>
 
-        {mainSection === 'university' ? (
-          <>
-            <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="text-center md:text-right"
-              >
-                <div className="flex items-center justif
-                
+        {mainSection === 'university' && (
+  <motion.div
+    initial={{ opacity: 0, x: 50 }}
+    animate={{ opacity: 1, x: 0 }}
+    className="text-center md:text-right"
+  >
+    <div></div> className="flex items-center justify-center md:justify-start gap-3 mb-6">
+      {/* محتوى القسم هنا */}
+    </div>
+  </motion.div>
+)}
