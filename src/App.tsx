@@ -433,8 +433,7 @@ export default function App() {
     animate={{ opacity: 1, x: 0 }}
     className="text-center md:text-right"
   >
-    <div></div> className="flex items-center justify-center md:justify-start gap-3 mb-6">
-      {/* محتوى القسم هنا */}
+    <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
     </div>
   </motion.div>
 )}
